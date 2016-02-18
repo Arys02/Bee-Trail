@@ -14,7 +14,7 @@ AC_PROG_CXX
 ## Configuration.  ##
 ## --------------- ##
 
-AC_CONFIG_SRCDIR([src])
+AC_CONFIG_SRCDIR([src/main.cc])
 # Ask for the creation of config.h.
 AC_CONFIG_HEADERS([config.h])
 
