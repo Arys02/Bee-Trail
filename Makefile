@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -Wall -Wextra -Werror -pedantic -Isrc/
+CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/ 
 DEBUG = -g
 BIN = bee-trail
 OBJ = ${SRC_ALL:.cc=.o}
@@ -10,7 +10,7 @@ SRC_ALL = src/main.cc
 all: ${BIN}
 
 ${BIN}:  build
-	${CXX} ${CXXFLAGS} -o $@ ${OBJ}
+	${CXX} ${CXXFLAGS} -o $@ ${OBJ} -L/usr/lib/x86_64-linux-gnu -lboost_program_options
 
 build: $(OBJ)
 
