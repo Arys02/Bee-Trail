@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/ 
+CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/
 DEBUG = -g
 BIN = bee-trail
 OBJ = ${SRC_ALL:.cc=.o}
-SRC_ALL = src/main.cc
+SRC_ALL = src/main.cc src/option-parser.cc
 
 .PHONY: all build debug check clean
 
