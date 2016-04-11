@@ -73,67 +73,12 @@ namespace beetrail
   {
     return vm["frames"].as<int>();
   }
-  //    if (vm.count("help") && argc == 2) /* -h */
-  //      help_exit();
-  //    else if (argc == 5 && !vm["output"].defaulted()) /* two arguments */
-  //    {
-  //      if (vm.count("input")) /* -i -o */
-  //      {
-  //        check_input_file();
-  //        return solve(vm["input"].as<std::string>().c_str(),
-  //                         vm["output"].as<std::string>().c_str());
-  //   }
-  // else if (!vm["size"].defaulted()) /* -s -o*/
-  // return genere(vm["size"].as<int>(),
-  //             vm["output"].as<std::string>().c_str());
-  //    }
-  //  else if (argc == 3 && !vm.count("help")) /* -i or -o alone */
-  //{
-  //if (vm.count("input"))
-  //      {
-  //      check_input_file();
-  //    return solve(vm["input"].as<std::string>().c_str(), nullptr);
-  //}
-  //      else if (!vm["output"].defaulted())
-  //      return genere(3, vm["output"].as<std::string>().c_str()); // -o
-  //  else if (!vm["size"].defaulted())
-  //  return genere(vm["size"].as<int>(), nullptr);
-  //    }
-  //  else if (argc == 1) /* s = 3, -i nothing -o out */
-  //  return genere(3, nullptr);
 
-  //    throw std::bad_function_call();
-  //  }
-  //  catch (std::exception& e)
-  //  {
-  //  std::cerr << desc;
-  //return error_code::bad_usage;
-  //  }
-  //}
-
-  //int OptionParser::check_input_file()
-  //{
-/* Open file and put in in a stream */
-/*  const char *input_file = vm["input"].as<std::string>().c_str();
-    std::ifstream file_in;
-    file_in.open(input_file);
-
-    if (file_in.is_open() && file_in.good())
-    {
-    if (is_vex_file(file_in))
-    return error_code::ok;
-
-    exit(error_code::incorrect_file);
-    }
-    exit(error_code::file_not_found);
-    }*/
-
-
-/* Display help in standart output and exits with input error code */
-void OptionParser::action_help(int error_code = error_code::good)
-{
-  std::cout << desc;
-  exit(error_code);
-}
+  /* Display help in standart output and exits with input error code */
+  void OptionParser::action_help(int error_code = error_code::good)
+  {
+    std::cout << desc;
+    exit(error_code);
+  }
 
 }
