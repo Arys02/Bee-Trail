@@ -4,12 +4,12 @@ namespace beetrail
 {
   /* Parser initialisation */
   OptionParser::OptionParser(int p_argc, char **p_argv)
-    : desc(bpo::options_description("Options")),
-    vm(),
-    argc(p_argc),
-    argv(p_argv)
+    : desc_(bpo::options_description("Options")),
+    vm_(),
+    argc_(p_argc),
+    argv_(p_argv)
   {
-    desc.add_options()
+    desc_.add_options()
       ("help,h", "Display the help")
       ("print,p", "Pretty printing of particules")
       ("time,t", "Evaluation of the performances in term of time")
@@ -28,8 +28,8 @@ namespace beetrail
   {
     try
     {
-      bpo::store(bpo::parse_command_line(argc, argv, desc), vm);
-      bpo::notify(vm);
+      bpo::store(bpo::parse_command_line(argc_, argv_, desc_), vm_);
+      bpo::notify(vm_);
       /* Add actions to do to structure */
     }
     catch (std::exception& e)
@@ -41,44 +41,43 @@ namespace beetrail
 
   int OptionParser::help_called()
   {
-    return vm.count("help");
+    return vm_.count("help");
   }
 
   int OptionParser::print_called()
   {
-    return vm.count("print");
+    return vm_.count("print");
   }
 
   int OptionParser::time_called()
   {
-    return vm.count("time");
+    return vm_.count("time");
   }
 
   std::string OptionParser::topology()
   {
-    return vm["topology"].as<std::string>();
+    return vm_["topology"].as<std::string>();
   }
 
   std::string OptionParser::video_input()
   {
-    return vm["video"].as<std::string>();
+    return vm_["video"].as<std::string>();
   }
 
   std::string OptionParser::object_input()
   {
-    return vm["object"].as<std::string>();
+    return vm_["object"].as<std::string>();
   }
 
   int OptionParser::frames_per_second()
   {
-    return vm["frames"].as<int>();
+    return vm_["frames"].as<int>();
   }
 
   /* Display help in standart output and exits with input error code */
   void OptionParser::action_help(int error_code = error_code::good)
   {
-    std::cout << desc;
+    std::cout << desc_;
     exit(error_code);
   }
-
 }
