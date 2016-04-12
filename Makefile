@@ -6,7 +6,7 @@ BIN = bee-trail
 LINKCV = `pkg-config --libs opencv`
 FLAGCV = `pkg-config --cflags opencv`
 OBJ = ${SRC_ALL:.cc=.o}
-SRC_ALL = $(SRC) #$(SRC_VID)
+SRC_ALL = $(SRC) $(SRC_VID)
 SRC = $(addprefix $(DIR_SRC)/,main.cc option-parser.cc option-manager.cc)
 SRC_VID = $(addprefix $(DIR_VID)/, VideoManager.cc)
 DIR_VID = $(DIR_SRC)/video
