@@ -1,5 +1,6 @@
 CXX = g++
-CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/ -Isrc/video $(FLAGCV)$(LINKCV)
+CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/ -Isrc/video
+CXXLIBS = $(FLAGCV) $(LINKCV)
 DEBUG = -g
 BIN = bee-trail
 LINKCV = `pkg-config --libs opencv`
@@ -16,7 +17,7 @@ DIR_SRC = src
 all: ${BIN}
 
 ${BIN}:  build
-	${CXX} ${CXXFLAGS} -o $@ ${OBJ} -L/usr/lib/x86_64-linux-gnu -lboost_program_options
+	${CXX} ${CXXFLAGS} -o $@ ${OBJ} -L/usr/lib/x86_64-linux-gnu -lboost_program_options ${CXXLIBS}
 
 build: $(OBJ)
 
