@@ -30,10 +30,14 @@ namespace beetrail
     else
       return error_code::error;
 
+    //TODO
     // Options pretty_printer =  option_parser_->print_called()
     // Options time_count = option_parser_->time_called()
 
-    //VideoManager set input video(option_parser_->video_input());
+    //TODO Initialize VideoManager with input video and put it in Options.
+    //VideoManager(option_parser_->video_input());
+
+    //TODO Initialize ImageDescriptor with input image and put it in Options.
     //ImageDescriptor set object(option_parser_->object_input());
 
     return error_code::good;

@@ -1,11 +1,23 @@
 ==TODO
 
-.Important:
+- What's next?
 
-Doxygen
-Comment well OptionParser and OptionManager
+.Implement Options function containing:
+  Pointer to VideoManager.
+  Pointer to ImageDescriptor.
+  Parameters for PSO (what kind of topology, number of frames to analyse etc).
+and link it to OptionManager in TODOs comments.
+Also, inside this class, define macros for MAX_FRAMES and TOPOLOGY for example.
 
 
-.Less important:
 
-Design pattern for option parser getters
+- Important:
+
+.Doxygen
+.Comment well OptionParser and OptionManager
+
+
+
+- Less important:
+
+.Design pattern for option parser getters
