@@ -8,10 +8,12 @@ namespace beetrail
   {
     public:
       VideoManager(std::string path);
-      cv::Mat get_frame();
+      VideoManager();
+      cv::Mat frame_get();
       bool check_file();
 
       std::string name_window_get();
+      cv::VideoCapture capture_get();
 
     private:
         cv::VideoCapture capture_;
