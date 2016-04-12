@@ -1,7 +1,7 @@
 #include <iostream>
 #include "option-parser.hh"
 #include "option-manager.hh"
-//#include "video/VideoManager.hh"
+#include "video/VideoManager.hh"
 
 
 int main(int argc, char **argv)
@@ -9,14 +9,19 @@ int main(int argc, char **argv)
   beetrail::OptionParser parser(argc, argv);
   parser.parse_options();
   beetrail::OptionManager manager(parser);
-  return manager.action();
+  //return manager.action();
 
-/*  beetrail::VideoManager vm("");
+  /*
+  beetrail::VideoManager vm("~/Videos/small.mp4");
+  cv::Mat edge;
 
   for(;;)
   {
-    cv::Mat frame = vm.get_frame();
-    cv::imshow(vm.name_window_get(), frame);
+    //std::cout << "lol \n";
+    cv::Mat frame;
+    vm.capture_get() >> frame;
+    //cv::cvtColor(frame, edge, cv::COLOR_BGR2GRAY);
+    cv::imshow("mdr", frame);
   }
-*/
+  */
 }
