@@ -1,9 +1,15 @@
 CXX = g++
-CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/
+CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -Isrc/ -Isrc/video $(FLAGCV)$(LINKCV)
 DEBUG = -g
 BIN = bee-trail
+LINKCV = `pkg-config --libs opencv`
+FLAGCV = `pkg-config --cflags opencv`
 OBJ = ${SRC_ALL:.cc=.o}
-SRC_ALL = src/main.cc src/option-parser.cc
+SRC_ALL = $(SRC) $(SRC_VID)
+SRC = $(addprefix $(DIR_SRC)/,main.cc option-parser.cc)
+SRC_VID = $(addprefix $(DIR_VID)/, VideoManagment.cc)
+DIR_VID = $(DIR_SRC)/video
+DIR_SRC = src
 
 .PHONY: all build debug check clean
 

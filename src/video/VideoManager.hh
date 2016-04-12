@@ -11,6 +11,8 @@ namespace beetrail
       cv::Mat get_frame();
       bool check_file();
 
+      std::string name_window_get();
+
     private:
         cv::VideoCapture capture_;
         std::string name_window_;

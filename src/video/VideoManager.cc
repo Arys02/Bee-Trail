@@ -13,6 +13,11 @@ namespace beetrail
     namedWindow(name_window_, 1);
   }
 
+  std::string
+  VideoManager::name_window_get()
+  {
+    return name_window_;
+  }
 
   Mat VideoManager::get_frame()
   {
