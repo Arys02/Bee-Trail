@@ -1,0 +1,11 @@
+==TODO
+
+.Important:
+
+Doxygen
+Comment well OptionParser and OptionManager
+
+
+.Less important:
+
+Design pattern for option parser getters

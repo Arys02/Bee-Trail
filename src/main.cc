@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   beetrail::OptionParser parser(argc, argv);
   parser.parse_options();
   beetrail::OptionManager manager(parser);
-  //manager.take_action();
+  return manager.action();
 
 /*  beetrail::VideoManager vm("");
 
@@ -19,5 +19,4 @@ int main(int argc, char **argv)
     cv::imshow(vm.name_window_get(), frame);
   }
 */
-  return 0;
 }

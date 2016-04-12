@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/program_options.hpp>
+#include <iostream>
 
 namespace beetrail
 {
@@ -18,7 +19,7 @@ namespace beetrail
     public:
       OptionParser(int p_argc, char **p_argv); /* Constructor */
       int parse_options(); /* Parse options and put results in the class fields */
-      void action_help(int error_code); /* Displays help and exits */
+      void print_help(std::ostream& output_stream); /* Display help in stream */
 
       /* Parser values getters */
       int help_called();

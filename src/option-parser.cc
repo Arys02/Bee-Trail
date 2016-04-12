@@ -34,7 +34,8 @@ namespace beetrail
     }
     catch (std::exception& e)
     {
-      action_help(error_code::error);
+      print_help(std::cerr);
+      exit(error_code::error);
     }
     return 0;
   }
@@ -74,10 +75,9 @@ namespace beetrail
     return vm_["frames"].as<int>();
   }
 
-  /* Display help in standart output and exits with input error code */
-  void OptionParser::action_help(int error_code = error_code::good)
+  /* Display help in input stream */
+  void OptionParser::print_help(std::ostream& output_stream)
   {
-    std::cout << desc_;
-    exit(error_code);
+    output_stream << desc_;
   }
 }
