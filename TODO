@@ -17,6 +17,9 @@ Also, inside this class, define macros for MAX_FRAMES and TOPOLOGY for example.
 .Comment well OptionParser and OptionManager
 
 
+- Exceptions:
+.No cam available (VideoManager)
+
 
 - Less important:
 
