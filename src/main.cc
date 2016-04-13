@@ -11,17 +11,21 @@ int main(int argc, char **argv)
   beetrail::OptionManager manager(parser);
   return manager.action();
 
-  /*
-  beetrail::VideoManager vm("~/Videos/small.mp4");
+  beetrail::VideoManager vm;
   cv::Mat edge;
 
-  for(;;)
+  for(int i = 0;;i++)
   {
     //std::cout << "lol \n";
     cv::Mat frame;
     vm.capture_get() >> frame;
     //cv::cvtColor(frame, edge, cv::COLOR_BGR2GRAY);
-    cv::imshow("mdr", frame);
+    //if (i % 1 == 0) {
+    vm.draw_square(5, 0, 0, frame);
+    cv::imshow("Bee-trail", frame);
+    //}
+
+    if (cv::waitKey(30) >= 0)
+      break;
   }
-  */
 }

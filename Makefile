@@ -8,7 +8,8 @@ FLAGCV = `pkg-config --cflags opencv`
 OBJ = ${SRC_ALL:.cc=.o}
 SRC_ALL = $(SRC) $(SRC_VID) $(SRC_SWA) $(SRC_FFU)
 SRC = $(addprefix $(DIR_SRC)/,main.cc option-parser.cc option-manager.cc \
-															the-program.cc)
+	the-program.cc)
+
 SRC_VID = $(addprefix $(DIR_VID)/, video-manager.cc)
 DIR_VID = $(DIR_SRC)/video
 SRC_SWA = $(addprefix $(DIR_SWA)/, pso-settings.cc)
