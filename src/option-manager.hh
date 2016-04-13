@@ -1,6 +1,10 @@
 #pragma once
 
 #include "option-parser.hh"
+#include "video-manager.hh"
+#include "swarm/pso-settings.hh"
+#include "ffunctions/image-descriptor.hh"
+#include "the-program.hh"
 #include <memory>
 
 namespace beetrail

@@ -9,36 +9,38 @@ namespace beetrail
 
   int OptionManager::action()
   {
+    /* Help invoked? */
     if (option_parser_->help_called())
-    {
       option_parser_->print_help(std::cerr);
-    }
 
+    /* Pso settings */
+    enum topology topology;
     if (option_parser_->topology() == "star")
-      ;
-      // Options topology = TOPOLOGY_STAR;
+      topology = star;
     else if (option_parser_->topology() == "ring")
-      ;
-      // Options topology = TOPOLOGY_RING;
+      topology = ring;
     else
       return error_code::error;
 
     int frames = option_parser_->frames_per_second();
-    if (frames >= 0 && frames <= 10) //TODO 10 to be MAX_FRAMES
-      ;
-      // Options nb_frames =  frames;
-    else
+    if (frames < 0 || frames > PsoSettings::max_frames_per_second)
       return error_code::error;
 
-    //TODO
-    // Options pretty_printer =  option_parser_->print_called()
-    // Options time_count = option_parser_->time_called()
+    PsoSettings pso_settings(topology, frames, option_parser_->print_called(),
+        option_parser_->time_called());
 
-    //TODO Initialize VideoManager with input video and put it in Options.
-    //VideoManager(option_parser_->video_input());
+    /* Video path */
+    VideoManager vm = option_parser_->video_input() == "" ?
+      VideoManager() : VideoManager(option_parser_->video_input());
 
-    //TODO Initialize ImageDescriptor with input image and put it in Options.
-    //ImageDescriptor set object(option_parser_->object_input());
+    /* Image to recognize path */
+    ImageDescriptor img = ImageDescriptor(option_parser_->object_input());
+
+    /* Main entry point */
+    TheProgram the_program(vm, img, pso_settings);
+    the_program.launch_pso();
+    /* Or Output results = the_program.get_results(); */
+
 
     return error_code::good;
   }
