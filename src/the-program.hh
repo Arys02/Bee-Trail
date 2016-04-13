@@ -3,6 +3,7 @@
 #include "video/video-manager.hh"
 #include "ffunctions/image-descriptor.hh"
 #include "swarm/pso-settings.hh"
+#include "swarm/pso.hh"
 
 #include <memory>
 
@@ -15,9 +16,12 @@ namespace beetrail
       std::shared_ptr<ImageDescriptor> id;
       std::shared_ptr<PsoSettings> pso_settings;
 
+      Pso pso;
+
     public:
       TheProgram(VideoManager &vm, ImageDescriptor &id,
           PsoSettings &pso_settings);
-      void launch_pso();
+      /* TODO Launch_pso should return a PsoResult class in the future*/
+      void launch_pso(); // Init pso and loops on update
   };
 }

@@ -17,6 +17,10 @@ Also, inside this class, define macros for MAX_FRAMES and TOPOLOGY for example.
 .Comment well OptionParser and OptionManager
 
 
+- Future:
+
+.launch_pso (TheProgram) should return a PsoResult class
+
 - Exceptions:
 .No cam available (VideoManager)
 

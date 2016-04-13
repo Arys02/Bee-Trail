@@ -39,10 +39,10 @@ namespace beetrail
     /* Main entry point */
     TheProgram the_program(vm, img, pso_settings);
     the_program.launch_pso();
-    /* Or Output results = the_program.get_results(); */
+    /* Output results = the_program.get_results(); */
 
     //Toast
-  for(int i = 0 ;; i++)
+/*  for(int i = 0 ;; i++)
   {
     cv::Mat frame;
     vm.capture_get() >> frame;
@@ -51,7 +51,7 @@ namespace beetrail
 
     if (cv::waitKey(30) >= 0)
       break;
-  }
+  } */
 
     return error_code::good;
   }

@@ -12,6 +12,10 @@ namespace beetrail
 
   void TheProgram::launch_pso()
   {
+    pso = Pso(pso_settings); //pso.init()
+    for (;;)
+      pso.update(vm->get_frame(), id, pso_settings); // particules update
+
     return;
   }
 }
