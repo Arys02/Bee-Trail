@@ -3,7 +3,6 @@
 #include <memory>
 #include "opencv2/opencv.hpp"
 #include "particule.hh"
-#include "the-program.hh"
 #include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
 
@@ -35,6 +34,7 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
+      Pso();
       Pso(std::shared_ptr<PsoSettings> pso_opt,
           std::shared_ptr<ImageDescriptor> img_desc);
 

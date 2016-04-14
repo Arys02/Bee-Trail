@@ -16,7 +16,7 @@ namespace beetrail
       std::shared_ptr<ImageDescriptor> id;
       std::shared_ptr<PsoSettings> pso_settings;
 
-      Pso pso;
+      std::shared_ptr<Pso> pso;
 
     public:
       TheProgram(VideoManager &vm, ImageDescriptor &id,

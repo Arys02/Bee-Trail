@@ -2,6 +2,11 @@
 
 namespace beetrail
 {
+
+  Pso::Pso()
+  {
+
+  }
   Pso::Pso(std::shared_ptr<PsoSettings> pso_opt,
           std::shared_ptr<ImageDescriptor> img_desc)
     : pso_opt_(pso_opt), img_desc_(img_desc)
@@ -9,7 +14,7 @@ namespace beetrail
 
   void Pso::update(cv::Mat frame)
   {
-    //update function
+    return; //update function
   }
 
   std::shared_ptr<PsoSettings>
