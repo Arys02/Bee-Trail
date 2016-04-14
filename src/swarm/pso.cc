@@ -10,10 +10,13 @@ namespace beetrail
   Pso::Pso(std::shared_ptr<PsoSettings> pso_opt,
           std::shared_ptr<ImageDescriptor> img_desc)
     : pso_opt_(pso_opt), img_desc_(img_desc)
-  { }
+  {
+    //TODO init set of paricles
+  }
 
   void Pso::update(cv::Mat frame)
   {
+    //TODO
     return; //update function
   }
 

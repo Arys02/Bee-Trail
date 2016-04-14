@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <vector>
 #include "opencv2/opencv.hpp"
-#include "particule.hh"
+#include "particle.hh"
 #include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
 
@@ -51,9 +52,9 @@ namespace beetrail
 
 
     private:
-      //Vector<Particule> list_particule_;
+      std::vector<Particle> list_particle_;
       std::shared_ptr<PsoSettings> pso_opt_;
       std::shared_ptr<ImageDescriptor> img_desc_;
-      //std::sharedptr best particule
+      std::shared_ptr<Particle> best_particle;
   };
 }
