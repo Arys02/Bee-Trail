@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++1y -Wall -Wextra -Werror -pedantic -g -Isrc/ -Isrc/video
+CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video
 CXXLIBS = $(FLAGCV) $(LINKCV)
 DEBUG = -g
 BIN = bee-trail
@@ -12,7 +12,7 @@ SRC = $(addprefix $(DIR_SRC)/,main.cc option-parser.cc option-manager.cc \
 
 SRC_VID = $(addprefix $(DIR_VID)/, video-manager.cc)
 DIR_VID = $(DIR_SRC)/video
-SRC_SWA = $(addprefix $(DIR_SWA)/, pso-settings.cc pso.cc)
+SRC_SWA = $(addprefix $(DIR_SWA)/, pso-settings.cc pso.cc particle.cc)
 DIR_SWA = $(DIR_SRC)/swarm
 SRC_FFU = $(addprefix $(DIR_FFU)/, image-descriptor.cc)
 DIR_FFU = $(DIR_SRC)/ffunctions
@@ -26,6 +26,9 @@ ${BIN}:  build
 	${CXX} ${CXXFLAGS} -o $@ ${OBJ} -L/usr/lib/x86_64-linux-gnu -lboost_program_options ${CXXLIBS}
 
 build: $(OBJ)
+
+error: CXXFLAGS += -Werror
+error: ${BIN}
 
 debug: CXXFLAGS += ${DEBUG}
 debug: CXX = clang++
