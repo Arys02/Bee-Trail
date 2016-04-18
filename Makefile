@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video
+CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video -O0
 CXXLIBS = $(FLAGCV) $(LINKCV)
 DEBUG = -g
 BIN = bee-trail
