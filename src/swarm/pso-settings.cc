@@ -12,4 +12,19 @@ namespace beetrail
     pretty_printer_on = pprinter_on ? 1 : 0;
     time_count_on = time_count_on ? 1 : 0; /*Useless, but to have cuter values in debugger */
   }
+
+  double PsoSettings::get_weight()
+  {
+    return weight;
+  }
+
+  double PsoSettings::get_acceleration1()
+  {
+    return acceleration1;
+  }
+
+  double PsoSettings::get_acceleration2()
+  {
+    return acceleration2;
+  }
 }
