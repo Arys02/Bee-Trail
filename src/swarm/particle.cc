@@ -69,7 +69,10 @@ namespace beetrail
 
     pos_ = pos_ + speed_;
 
-    if (pos_ < 0)
-      pos_ = 0;
+    /* Check position is not updated to negative */
+    if (pos_.x < 0)
+      pos_.x = 0;
+    if (pos_.y < 0)
+      pos_.y = 0;
   }
 }
