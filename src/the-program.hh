@@ -21,7 +21,6 @@ namespace beetrail
     public:
       TheProgram(VideoManager &vm, ImageDescriptor &id,
           PsoSettings &pso_settings);
-      /* TODO Launch_pso should return a PsoResult class in the future*/
       void launch_pso(); // Init pso and loops on update
   };
 }
