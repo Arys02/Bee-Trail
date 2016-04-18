@@ -6,6 +6,7 @@
 #include "particle.hh"
 #include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
+#include <math.h>
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh
@@ -30,12 +31,11 @@ namespace beetrail
       /*!
        * \brief Constructor
        *
-       * Constructor of Particul swarm optimization algorithme
+       * Constructor of Particul swarm optimization algorithm
        * \param pso_opt :
        * \param img_desc_ :
        *
        */
-      Pso();
       Pso(std::shared_ptr<PsoSettings> pso_opt,
           std::shared_ptr<ImageDescriptor> img_desc);
 
@@ -52,9 +52,9 @@ namespace beetrail
 
 
     private:
-      std::vector<Particle> list_particle_;
+      std::vector<std::shared_ptr<Particle>> list_particle_;
       std::shared_ptr<PsoSettings> pso_opt_;
       std::shared_ptr<ImageDescriptor> img_desc_;
-      std::shared_ptr<Particle> best_particle;
+      std::shared_ptr<Particle> best_particle_;
   };
 }
