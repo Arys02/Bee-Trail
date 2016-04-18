@@ -27,4 +27,9 @@ namespace beetrail
   {
     return acceleration2;
   }
+
+  int PsoSettings::get_nb_particles()
+  {
+    return nb_particles;
+  }
 }

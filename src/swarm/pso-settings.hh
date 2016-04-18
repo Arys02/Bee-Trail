@@ -20,6 +20,7 @@ namespace beetrail
       static double constexpr acceleration1 = 0.2;
       static double constexpr acceleration2 = 0.8;
       static double constexpr weight = 0.5;
+      static int constexpr nb_particles = 100;
 
     public:
       static int max_frames_per_second;
@@ -29,5 +30,6 @@ namespace beetrail
       static double get_acceleration1();
       static double get_acceleration2();
       static double get_weight();
+      static int get_nb_particles();
   };
 }
