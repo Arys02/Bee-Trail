@@ -37,9 +37,7 @@ namespace beetrail
     for (std::shared_ptr<Particle> p : list_particle_)
     {
       i++;
-      std::cout << "Particle " << i << ":" << std::endl;
       p->update(best_particle_);
-      std::cout << std::endl;
     }
 
     //TODO Call evaluation function on swarm

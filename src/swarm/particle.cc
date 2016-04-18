@@ -62,24 +62,12 @@ namespace beetrail
     Vector2 best_pos = best_pt_;
     Vector2 best_swarm_pos = best_particule->pos_;
 
-    std::cout << "r = " << r << std::endl;
-    std::cout << "accel1 = " << accel1 << std::endl;
-    std::cout << "accel2 = " << accel2 << std::endl;
-    std::cout << "weight = " << weight << std::endl;
-    std::cout << "weight * speed + accel1 * r * (best_pos - pos) + accel2 * r *";
-      std::cout << "(best_swarm_pos - pos)" << std::endl;
-    std::cout << std::endl;
-
       /* Compute new speed */
-    std::cout << "old speed: " << speed_ << std::endl;
     speed_ = weight * speed_
       + accel1 * r * (best_pos - pos_)
       + accel2 * r * (best_swarm_pos - pos_);
-    std::cout << "new speed: " << speed_ << std::endl;
 
-    std::cout << "old_pos: " << pos_ << std::endl;
     pos_ = pos_ + speed_;
-    std::cout << "new_pos: " << pos_ << std::endl;
 
     if (pos_ < 0)
       pos_ = 0;
