@@ -14,12 +14,13 @@ namespace beetrail
     int nb_particles = PsoSettings::get_nb_particles();
 
 
-
+    srand(time(NULL));
 
     for (int i = 0 ; i < nb_particles ; i++)
     {
       int randomX = random() % 640;
       int randomY = random() % 480;
+      std::cout << "Px : " << randomX << "   Py : " << randomY << std::endl;
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
               Vector2(randomX, randomY), Vector2(2, 2), Vector2(1, 1))));

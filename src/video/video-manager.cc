@@ -56,9 +56,9 @@ namespace beetrail
         {
           auto s = frame.size();
 
-          std::cout << "i : " << i << ", j :" << j << "\n";
-          std::cout << "x : " << x << ", y :" << y << "\n";
-          std::cout << "size : " << size << "\n";
+          //std::cout << "i : " << i << ", j :" << j << "\n";
+          //std::cout << "x : " << x << ", y :" << y << "\n";
+          //std::cout << "size : " << size << "\n";
           if (i < s.height && j < s.width)
           {
             Vec3b color = frame.at<Vec3b>(Point(i, j));
@@ -69,5 +69,14 @@ namespace beetrail
 
           }
         }
+    }
+
+  void
+    VideoManager::pretty_print(std::shared_ptr<Pso> pso, Mat frame)
+    {
+      for (auto p : pso->list_particle_get())
+      {
+        draw_square(2, p->pos_get().x, p->pos_get().y, frame);
+      }
     }
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "opencv2/opencv.hpp"
+#include "swarm/pso.hh"
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh
@@ -73,6 +74,8 @@ namespace beetrail
        * \param frame : frame
        */
       void draw_square(int size, int x, int y, cv::Mat frame);
+
+      void pretty_print(std::shared_ptr<Pso> pso, cv::Mat frame);
 
     private:
       cv::VideoCapture capture_; /*!< Videocapture type*/
