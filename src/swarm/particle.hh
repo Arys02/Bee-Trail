@@ -39,8 +39,8 @@ namespace beetrail
        * \param accel : initial of the particle 
        *
        */
-      Particle(Vector2 pos, Vector2 speed, Vector2 accel)
-        : best_pt_(pos), pos_(pos), speed_(speed), accel_(accel)
+      Particle(Vector2 pos, Vector2 speed)
+        : best_pt_(pos), pos_(pos), speed_(speed)
       { }
 
       Vector2 best_pt_get();
@@ -55,15 +55,11 @@ namespace beetrail
       Vector2 speed_get();
       void speed_set(Vector2 new_speed);
 
-      Vector2 accel_get();
-      void accel_set(Vector2 new_accel);
-
-      void update(std::shared_ptr<Particle> best_particule);
+      void update(Vector2 best_swarm_point);
 
     private:
       Vector2 best_pt_;
       Vector2 pos_;
       Vector2 speed_;
-      Vector2 accel_;
   };
 }

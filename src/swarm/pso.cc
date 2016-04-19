@@ -23,25 +23,21 @@ namespace beetrail
       std::cout << "Px : " << randomX << "   Py : " << randomY << std::endl;
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
-              Vector2(randomX, randomY), Vector2(2, 2), Vector2(1, 1))));
+              Vector2(randomX, randomY), Vector2(2, 2))));
     }
 
     //TODO Will be changed when calling evaluation function on this random swarm
     /* Tmp solution to best_particle find */
     int r = random() % nb_particles;
-    best_particle_ = list_particle_[r];
+    best_pos_ = list_particle_[r]->best_pt_get();
+    /* Update best swarm position and best position for each particle */
+    evaluate();
   }
 
   void Pso::evaluate()
   {
     for (std::shared_ptr<Particle> p : list_particle_)
     {
-      /* Evaluate global best particle */
-      best_particle_ = DistanceMiddle::compare_particles(best_particle_, p) ?
-        best_particle_ :
-        p;
-
-
       /* Evaluate local best particle */
       Vector2 old_local_best = p->best_pt_get();
       Vector2 current_pos = p->pos_get();
@@ -50,6 +46,13 @@ namespace beetrail
             old_local_best, current_pos) ?
           old_local_best :
           current_pos);
+
+      /* Evaluate global best particle */
+      best_pos_ =
+        DistanceMiddle::compare_positions(best_pos_, p->best_pt_get()) ?
+        best_pos_:
+        p->best_pt_get();
+
     }
   }
 
@@ -60,7 +63,7 @@ namespace beetrail
     for (std::shared_ptr<Particle> p : list_particle_)
     {
       i++;
-      p->update(best_particle_);
+      p->update(best_pos_);
     }
 
     //TODO Call evaluation function on swarm

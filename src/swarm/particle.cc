@@ -21,11 +21,6 @@ namespace beetrail
     return speed_;
   }
 
-  Vector2 Particle::accel_get()
-  {
-    return accel_;
-  }
-
   void Particle::best_pt_set(Vector2 new_pt)
   {
     best_pt_ = new_pt;
@@ -41,14 +36,7 @@ namespace beetrail
     speed_ = new_speed;
   }
 
-  void Particle::accel_set(Vector2 new_accel)
-  {
-    accel_ = new_accel;
-  }
-
-
-
-  void Particle::update(std::shared_ptr<Particle> best_particule)
+  void Particle::update(Vector2 best_swarm_pos)
   {
     /* Init variables locally (+ annoying casts) */
 
@@ -60,7 +48,6 @@ namespace beetrail
 
     /* Best positions */
     Vector2 best_pos = best_pt_;
-    Vector2 best_swarm_pos = best_particule->pos_;
 
       /* Compute new speed */
     speed_ = weight * speed_
@@ -70,13 +57,13 @@ namespace beetrail
     pos_ = pos_ + speed_;
 
     /* Check position is not updated to negative */
-    if (pos_.x < 0)
+/*    if (pos_.x < 0)
       pos_.x = 0;
     else if (pos_.x > 640)
       pos_.x = 640;
     if (pos_.y < 0)
       pos_.y = 0;
     else if (pos_.y > 480)
-      pos_.x = 480;
+      pos_.x = 480; */
   }
 }

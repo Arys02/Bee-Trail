@@ -58,6 +58,6 @@ namespace beetrail
       std::vector<std::shared_ptr<Particle>> list_particle_;
       std::shared_ptr<PsoSettings> pso_opt_;
       std::shared_ptr<ImageDescriptor> img_desc_;
-      std::shared_ptr<Particle> best_particle_;
+      Vector2 best_pos_;
   };
 }

@@ -19,8 +19,8 @@ namespace beetrail
       int time_count_on;
       static double constexpr acceleration1 = 0.2;
       static double constexpr acceleration2 = 0.8;
-      static double constexpr weight = 0.5;
-      static int constexpr nb_particles = 100;
+      static double constexpr weight = 0.4;
+      static int constexpr nb_particles = 500;
 
     public:
       static int max_frames_per_second;
