@@ -32,9 +32,31 @@ namespace beetrail
     best_particle_ = list_particle_[r];
   }
 
+  void Pso::evaluate()
+  {
+    for (std::shared_ptr<Particle> p : list_particle_)
+    {
+      /* Evaluate global best particle */
+      best_particle_ = DistanceMiddle::compare_particles(best_particle_, p) ?
+        best_particle_ :
+        p;
+
+
+      /* Evaluate local best particle */
+      Vector2 old_local_best = p->best_pt_get();
+      Vector2 current_pos = p->pos_get();
+
+      p->best_pt_set(DistanceMiddle::compare_positions(
+            old_local_best, current_pos) ?
+          old_local_best :
+          current_pos);
+    }
+  }
+
   void Pso::update(cv::Mat frame)
   {
     int i = 0;
+    evaluate();
     for (std::shared_ptr<Particle> p : list_particle_)
     {
       i++;

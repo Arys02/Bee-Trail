@@ -1,4 +1,3 @@
-CXX = g++
 CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video -O0
 CXXLIBS = $(FLAGCV) $(LINKCV)
 DEBUG = -g
@@ -14,7 +13,7 @@ SRC_VID = $(addprefix $(DIR_VID)/, video-manager.cc)
 DIR_VID = $(DIR_SRC)/video
 SRC_SWA = $(addprefix $(DIR_SWA)/, pso-settings.cc pso.cc particle.cc)
 DIR_SWA = $(DIR_SRC)/swarm
-SRC_FFU = $(addprefix $(DIR_FFU)/, image-descriptor.cc)
+SRC_FFU = $(addprefix $(DIR_FFU)/, image-descriptor.cc distance-middle.cc)
 DIR_FFU = $(DIR_SRC)/ffunctions
 DIR_SRC = src
 

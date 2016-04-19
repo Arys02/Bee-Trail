@@ -7,6 +7,7 @@
 #include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
+#include "ffunctions/distance-middle.hh"
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh
@@ -44,6 +45,8 @@ namespace beetrail
        * \param lol
        */
       void update(cv::Mat frame);
+
+      void evaluate();
 
       std::shared_ptr<PsoSettings> pso_opt_get();
 
