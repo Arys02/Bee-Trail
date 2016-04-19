@@ -77,8 +77,16 @@ namespace beetrail
 
       void pretty_print(std::shared_ptr<Pso> pso, cv::Mat frame);
 
+      void display_frame(cv::Mat frame, int& stop);
+
+      double width_get();
+
+      double height_get();
+
     private:
       cv::VideoCapture capture_; /*!< Videocapture type*/
       std::string name_window_; /*!< Name of the generate window*/
+      double width_;
+      double height_;
   };
 }

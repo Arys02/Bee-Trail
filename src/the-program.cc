@@ -14,17 +14,13 @@ namespace beetrail
   void TheProgram::launch_pso()
   {
     pso = std::make_shared<Pso>(pso_settings, id); //pso.init()
-    for (;;)
+    int stop = 0;
+    while (!stop)
     {
       cv::Mat frame = vm->frame_get();
-
-      //vm->capture_get() >> frame;
       pso->update(frame); // particules update
       vm->pretty_print(pso, frame);
-      cv::imshow("Bee-trail", frame);
-
-      if (cv::waitKey(30) >= 0)
-        break;
+      vm->display_frame(frame, stop);
     }
 
     return;
