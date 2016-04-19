@@ -49,7 +49,7 @@ namespace beetrail
 
       std::shared_ptr<ImageDescriptor> img_desc_get();
 
-
+      std::vector<std::shared_ptr<Particle>> list_particle_get();
 
     private:
       std::vector<std::shared_ptr<Particle>> list_particle_;

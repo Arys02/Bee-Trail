@@ -18,8 +18,8 @@ namespace beetrail
 
     for (int i = 0 ; i < nb_particles ; i++)
     {
-      int randomX = random() % 800;
-      int randomY = random() % 1200;
+      int randomX = random() % 640;
+      int randomY = random() % 480;
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
               Vector2(randomX, randomY), Vector2(2, 2), Vector2(1, 1))));
@@ -43,6 +43,12 @@ namespace beetrail
     //TODO Call evaluation function on swarm
 
     return;
+  }
+
+
+  std::vector<std::shared_ptr<Particle>> Pso::list_particle_get()
+  {
+    return list_particle_;
   }
 
   std::shared_ptr<PsoSettings>
