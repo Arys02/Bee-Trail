@@ -13,6 +13,7 @@ Also, inside this class, define macros for MAX_FRAMES and TOPOLOGY for example.
 
 - Important:
 
+.Refactor code to implement well Middle fitness function and pretty printer
 .Doxygen
 .Comment well OptionParser and OptionManager
 
