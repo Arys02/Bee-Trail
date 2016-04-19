@@ -72,7 +72,11 @@ namespace beetrail
     /* Check position is not updated to negative */
     if (pos_.x < 0)
       pos_.x = 0;
+    else if (pos_.x > 640)
+      pos_.x = 640;
     if (pos_.y < 0)
       pos_.y = 0;
+    else if (pos_.y > 480)
+      pos_.x = 480;
   }
 }
