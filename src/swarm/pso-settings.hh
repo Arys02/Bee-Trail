@@ -17,10 +17,10 @@ namespace beetrail
       int frames_per_second;
       int pretty_printer_on;
       int time_count_on;
-      static double constexpr acceleration1 = 0.8;
-      static double constexpr acceleration2 = 0.2;
-      static double constexpr weight = 0.5;
-      static int constexpr nb_particles = 5000;
+      static double constexpr acceleration1 = 2;
+      static double constexpr acceleration2 = 2;
+      static double constexpr weight = 1.1;
+      static int constexpr nb_particles = 50;
 
     public:
       static int max_frames_per_second;

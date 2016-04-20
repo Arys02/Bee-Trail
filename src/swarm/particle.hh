@@ -58,6 +58,7 @@ namespace beetrail
       void update(Vector2 best_swarm_point);
 
     private:
+      void cap_speed(double max);
       Vector2 best_pt_;
       Vector2 pos_;
       Vector2 speed_;

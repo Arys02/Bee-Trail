@@ -35,6 +35,7 @@ namespace beetrail
 
   void Pso::evaluate()
   {
+    /* Update best position for each particle */
     for (auto p : list_particle_)
     {
       /* Evaluate local best particle */
@@ -47,23 +48,36 @@ namespace beetrail
           current_pos);
 
       /* Evaluate global best particle */
-      best_pos_ =
+      /*best_pos_ =
         DistanceMiddle::compare_positions(best_pos_, p->best_pt_get()) ?
         best_pos_:
-        p->best_pt_get();
+        p->best_pt_get(); */
 
+      if (DistanceMiddle::compare_positions(best_pos_, p->best_pt_get()))
+      {
+        std::cout << "Not changing global best" << std::endl;
+      }
+      else
+      {
+        std::cout << "Changing global velocity" << std::endl;
+        //std::cout << "  Particle (" << p->best_pt_get().X
+        best_pos_ = p->best_pt_get();
+      }
+
+
+      //std::cout << "Particule best : " << p->best_pt_get() << std::endl;
+      //std::cout << "Global best    : " << best_pos_ << std::endl;
     }
+
   }
 
   void Pso::update(cv::Mat frame)
   {
-    int i = 0;
     evaluate();
+    std::cout << "Best point. X = " << best_pos_.x << ", Y = " << best_pos_.y;
+    std::cout << std::endl;
     for (auto p : list_particle_)
-    {
-      i++;
       p->update(best_pos_);
-    }
 
     //TODO Call evaluation function on swarm
 
