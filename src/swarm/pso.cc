@@ -20,7 +20,6 @@ namespace beetrail
     {
       int randomX = random() % 640;
       int randomY = random() % 480;
-      std::cout << "Px : " << randomX << "   Py : " << randomY << std::endl;
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
               Vector2(randomX, randomY), Vector2(2, 2))));
@@ -36,7 +35,7 @@ namespace beetrail
 
   void Pso::evaluate()
   {
-    for (std::shared_ptr<Particle> p : list_particle_)
+    for (auto p : list_particle_)
     {
       /* Evaluate local best particle */
       Vector2 old_local_best = p->best_pt_get();
@@ -60,7 +59,7 @@ namespace beetrail
   {
     int i = 0;
     evaluate();
-    for (std::shared_ptr<Particle> p : list_particle_)
+    for (auto p : list_particle_)
     {
       i++;
       p->update(best_pos_);

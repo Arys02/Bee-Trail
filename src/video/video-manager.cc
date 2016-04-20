@@ -22,6 +22,8 @@ namespace beetrail
     moveWindow("Bee-Trail", 0, 0);
     width_ = capture_.get(CV_CAP_PROP_FRAME_WIDTH);
     height_ = capture_.get(CV_CAP_PROP_FRAME_HEIGHT);
+    std::cout << "width = " << width_;
+    std::cout << "height = " << height_;
   }
 
 
@@ -60,14 +62,13 @@ namespace beetrail
         {
           auto s = frame.size();
 
-          if (i < s.height && j < s.width)
+          if (i >= 0 && j >= 0 && i < s.width && j < s.height)
           {
             Vec3b color = frame.at<Vec3b>(Point(i, j));
             color.val[0] = 0;
             color.val[1] = 255;
             color.val[2] = 0;
             frame.at<Vec3b>(Point(i, j)) = color;
-
           }
         }
     }
@@ -75,13 +76,12 @@ namespace beetrail
   void
     VideoManager::pretty_print(std::shared_ptr<Pso> pso, Mat frame)
     {
-      for (std::shared_ptr<Particle> p : pso->list_particle_get())
+      for (auto p : pso->list_particle_get())
       {
         double x = p->pos_get().x;
         double y = p->pos_get().y;
 
-        if (x >= 0 && x < width_ && y >= 0 && y < height_)
-          draw_square(2, x, y, frame);
+        draw_square(2, x, y, frame);
       }
     }
 

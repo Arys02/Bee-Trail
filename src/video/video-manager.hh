@@ -2,6 +2,7 @@
 #include <string>
 #include "opencv2/opencv.hpp"
 #include "swarm/pso.hh"
+#include <unistd.h>
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh

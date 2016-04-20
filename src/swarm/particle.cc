@@ -2,10 +2,6 @@
 
 namespace beetrail
 {
-  //using namespace cv;
-  //using Vector2 = cv::Point2d;
-
-
   Vector2 Particle::best_pt_get()
   {
     return best_pt_;
@@ -53,17 +49,9 @@ namespace beetrail
     speed_ = weight * speed_
       + accel1 * r * (best_pos - pos_)
       + accel2 * r * (best_swarm_pos - pos_);
+    std::cout << "speed = " << speed_ << std::endl;
 
     pos_ = pos_ + speed_;
-
-    /* Check position is not updated to negative */
-/*    if (pos_.x < 0)
-      pos_.x = 0;
-    else if (pos_.x > 640)
-      pos_.x = 640;
-    if (pos_.y < 0)
-      pos_.y = 0;
-    else if (pos_.y > 480)
-      pos_.x = 480; */
+    std::cout << "X = " << pos_.x << ", Y = " << pos_.y << std::endl;
   }
 }
