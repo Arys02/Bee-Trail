@@ -16,7 +16,12 @@ namespace beetrail
       int action();
       int launch_application();
 
+      void action_help();
+
+      PsoSettings action_pso(int frames);
+
     private:
       std::shared_ptr<OptionParser> option_parser_;
+
   };
 }
