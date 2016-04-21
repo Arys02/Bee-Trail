@@ -40,17 +40,17 @@ namespace beetrail
     return 0;
   }
 
-  int OptionParser::help_called()
+  bool OptionParser::help_called()
   {
     return vm_.count("help");
   }
 
-  int OptionParser::print_called()
+  bool OptionParser::print_called()
   {
     return vm_.count("print");
   }
 
-  int OptionParser::time_called()
+  bool OptionParser::time_called()
   {
     return vm_.count("time");
   }
