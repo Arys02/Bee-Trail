@@ -22,9 +22,9 @@ namespace beetrail
       void print_help(std::ostream& output_stream); /* Display help in stream */
 
       /* Parser values getters */
-      int help_called();
-      int print_called();
-      int time_called();
+      bool help_called();
+      bool print_called();
+      bool time_called();
       std::string topology();
       std::string video_input();
       std::string object_input();
