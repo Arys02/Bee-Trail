@@ -17,6 +17,7 @@ namespace beetrail
       int frames_per_second_;
       int pretty_printer_on_;
       int time_count_on_;
+
       static double constexpr acceleration1_ = 2;
       static double constexpr acceleration2_ = 2;
       static double constexpr weight_ = 1.1;
@@ -33,3 +34,5 @@ namespace beetrail
       static int get_nb_particles();
   };
 }
+
+#include "pso-settings.hxx"
