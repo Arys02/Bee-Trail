@@ -11,7 +11,7 @@ namespace beetrail
     img_desc_ = img_desc;
     list_particle_ = std::vector<std::shared_ptr<Particle>>();
 
-    int nb_particles = PsoSettings::get_nb_particles();
+    int nb_particles = pso_opt->get_nb_particles();
 
 
     srand(time(NULL));

@@ -13,14 +13,22 @@ namespace beetrail
       ("help,h", "Display the help")
       ("print,p", "Pretty printing of particules")
       ("time,t", "Evaluation of the performances in term of time")
+
       ("topology,T", bpo::value<std::string>()->default_value("star"),
        "Changes the type of topology for the PSO algorithm")
+
       ("video,v", bpo::value<std::string>()->default_value(""),
        "File path to video to analyse")
+
       ("object,o", bpo::value<std::string>()->default_value(""),
        "File path to object to be detected")
+
       ("frames,f", bpo::value<int>()->default_value(1),
-       "Number of frames to analyse per second");
+       "Number of frames to analyse per second")
+
+      ("number,n", bpo::value<int>()->default_value(50),
+       "Number of Particle per swarm");
+
   }
 
   /* Parses options according to desc definition (constructor) */
@@ -38,6 +46,11 @@ namespace beetrail
       exit(error_code::error);
     }
     return 0;
+  }
+
+  bool OptionParser::number_called()
+  {
+    return vm_.count("number");
   }
 
   bool OptionParser::help_called()
@@ -73,6 +86,11 @@ namespace beetrail
   int OptionParser::frames_per_second()
   {
     return vm_["frames"].as<int>();
+  }
+
+  int OptionParser::number_get()
+  {
+    return vm_["number"].as<int>();
   }
 
   /* Display help in input stream */

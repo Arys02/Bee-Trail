@@ -2,8 +2,6 @@
 
 namespace beetrail
 {
-  double accel1 = PsoSettings::get_acceleration1();
-  double accel2 = PsoSettings::get_acceleration2();
   double weight = PsoSettings::get_weight();
 
   Vector2 Particle::best_pt_get()

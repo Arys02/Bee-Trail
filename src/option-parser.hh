@@ -22,6 +22,8 @@ namespace beetrail
       void print_help(std::ostream& output_stream); /* Display help in stream */
 
       /* Parser values getters */
+
+      bool number_called();
       bool help_called();
       bool print_called();
       bool time_called();
@@ -29,6 +31,7 @@ namespace beetrail
       std::string video_input();
       std::string object_input();
       int frames_per_second();
+      int number_get();
 
     private:
       /* Fields */

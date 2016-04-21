@@ -18,6 +18,7 @@ namespace beetrail
   int OptionManager::action()
   {
     action_help();
+
     /* Pso settings */
     enum topology topology;
     if (option_parser_->topology() == "star")
@@ -32,7 +33,7 @@ namespace beetrail
       return error_code::error;
 
     PsoSettings pso_settings(topology, frames, option_parser_->print_called(),
-        option_parser_->time_called());
+        option_parser_->time_called(), option_parser_->number_get());
 
     /* Video path */
     VideoManager vm = option_parser_->video_input() == "" ?
