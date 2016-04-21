@@ -11,7 +11,10 @@ namespace beetrail
   {
     /* Help invoked? */
     if (option_parser_->help_called())
+    {
       option_parser_->print_help(std::cerr);
+      exit(0);
+    }
   }
 
 
