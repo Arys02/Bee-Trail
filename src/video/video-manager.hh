@@ -74,7 +74,8 @@ namespace beetrail
        * \param x, y : coordonate on the frame where to draw
        * \param frame : frame
        */
-      void draw_square(int size, int x, int y, cv::Mat frame);
+      void draw_square(int size, int x, int y, cv::Mat frame,
+          int r, int g, int b);
 
       void pretty_print(std::shared_ptr<Pso> pso, cv::Mat frame);
 

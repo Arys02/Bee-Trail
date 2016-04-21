@@ -11,7 +11,8 @@ namespace beetrail
   {
     name_window_ = "Bee-Trail";
     namedWindow(name_window_, 1);
-    /* TODO; set width_ and height_ */
+    width_ = capture_.get(CV_CAP_PROP_FRAME_WIDTH);
+    height_ = capture_.get(CV_CAP_PROP_FRAME_HEIGHT);
   }
 
   VideoManager::VideoManager()
@@ -55,7 +56,8 @@ namespace beetrail
     }
 
   void
-    VideoManager::draw_square(int size, int x, int y, Mat frame)
+    VideoManager::draw_square(int size, int x, int y, Mat frame,
+        int r, int g, int b)
     {
       for (int i = x; i < x + size; i ++)
         for (int j = y; j < y + size; j ++)
@@ -65,9 +67,9 @@ namespace beetrail
           if (i >= 0 && j >= 0 && i < s.width && j < s.height)
           {
             Vec3b color = frame.at<Vec3b>(Point(i, j));
-            color.val[0] = 0;
-            color.val[1] = 255;
-            color.val[2] = 0;
+            color.val[0] = r;
+            color.val[1] = g;
+            color.val[2] = b;
             frame.at<Vec3b>(Point(i, j)) = color;
           }
         }
@@ -81,7 +83,7 @@ namespace beetrail
         double x = p->pos_get().x;
         double y = p->pos_get().y;
 
-        draw_square(2, x, y, frame);
+        draw_square(2, x, y, frame, 0, 255, 0);
       }
     }
 
