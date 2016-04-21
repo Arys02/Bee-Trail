@@ -35,51 +35,36 @@ namespace beetrail
 
   void Pso::evaluate()
   {
-    /* Update best position for each particle */
+    /* Update best position for each particle and swarm */
     for (auto p : list_particle_)
     {
       /* Evaluate local best particle */
-      Vector2 old_local_best = p->best_pt_get();
+      Vector2 local_best = p->best_pt_get();
       Vector2 current_pos = p->pos_get();
 
-      p->best_pt_set(DistanceMiddle::compare_positions(
-            old_local_best, current_pos) ?
-          old_local_best :
-          current_pos);
-
-      /* Evaluate global best particle */
-      /*best_pos_ =
-        DistanceMiddle::compare_positions(best_pos_, p->best_pt_get()) ?
-        best_pos_:
-        p->best_pt_get(); */
-
-      if (DistanceMiddle::compare_positions(best_pos_, p->best_pt_get()))
+      if (DistanceMiddle::compare_positions(current_pos) <
+          DistanceMiddle::compare_positions(local_best))
       {
-        std::cout << "Not changing global best" << std::endl;
-      }
-      else
-      {
-        std::cout << "Changing global velocity" << std::endl;
-        //std::cout << "  Particle (" << p->best_pt_get().X
-        best_pos_ = p->best_pt_get();
+        p->best_pt_set(current_pos);
       }
 
-
-      //std::cout << "Particule best : " << p->best_pt_get() << std::endl;
-      //std::cout << "Global best    : " << best_pos_ << std::endl;
+      /* Update global best if current particule is better */
+      local_best = p->best_pt_get();
+      if (DistanceMiddle::compare_positions(local_best) <
+          DistanceMiddle::compare_positions(best_pos_))
+      {
+        best_pos_ = local_best;
+      }
     }
 
   }
 
   void Pso::update(cv::Mat frame)
   {
+    /* Set best position for swarm and each particle */
     evaluate();
-    std::cout << "Best point. X = " << best_pos_.x << ", Y = " << best_pos_.y;
-    std::cout << std::endl;
     for (auto p : list_particle_)
       p->update(best_pos_);
-
-    //TODO Call evaluation function on swarm
 
     return;
   }

@@ -46,9 +46,6 @@ namespace beetrail
       Vector2 best_pt_get();
       void best_pt_set(Vector2 new_pt);
 
-      Vector2 best_pt_swarm_get();
-      void best_pt_swarm_set(Vector2 new_pt);
-
       Vector2 pos_get();
       void pos_set(Vector2 new_pos);
 
