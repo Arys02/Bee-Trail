@@ -13,14 +13,14 @@ namespace beetrail
   class PsoSettings
   {
     private:
-      enum topology topology;
-      int frames_per_second;
-      int pretty_printer_on;
-      int time_count_on;
-      static double constexpr acceleration1 = 2;
-      static double constexpr acceleration2 = 2;
-      static double constexpr weight = 1.1;
-      static int constexpr nb_particles = 5000;
+      enum topology topology_;
+      int frames_per_second_;
+      int pretty_printer_on_;
+      int time_count_on_;
+      static double constexpr acceleration1_ = 2;
+      static double constexpr acceleration2_ = 2;
+      static double constexpr weight_ = 1.1;
+      static int constexpr nb_particles_ = 5000;
 
     public:
       static int max_frames_per_second;
