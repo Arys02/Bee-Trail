@@ -76,9 +76,9 @@ namespace beetrail
     }
 
   void
-    VideoManager::pretty_print(std::shared_ptr<Pso> pso, Mat frame)
+    VideoManager::pretty_print(Pso& pso, Mat frame)
     {
-      for (auto p : pso->list_particle_get())
+      for (auto p : pso.list_particle_get())
       {
         double x = p->pos_get().x;
         double y = p->pos_get().y;

@@ -95,7 +95,7 @@ int main(int argc, char **argv)
     beetrail::VideoManager(path_to_video);
 
 
-  std::shared_ptr<beetrail::Pso> pso_p = std::make_shared<beetrail::Pso>(pso);
+  //std::shared_ptr<beetrail::Pso> pso_p = std::make_shared<beetrail::Pso>(pso);
 
 
 
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
   {
     cv::Mat frame = video_manager.frame_get();
     pso.update(frame);
-    video_manager.pretty_print(pso_p, frame);
+    video_manager.pretty_print(pso, frame);
     video_manager.display_frame(frame, stop);
   }
 

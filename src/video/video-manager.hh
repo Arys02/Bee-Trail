@@ -77,7 +77,7 @@ namespace beetrail
       void draw_square(int size, int x, int y, cv::Mat frame,
           int r, int g, int b);
 
-      void pretty_print(std::shared_ptr<Pso> pso, cv::Mat frame);
+      void pretty_print(Pso& pso, cv::Mat frame);
 
       void display_frame(cv::Mat frame, int& stop);
 
