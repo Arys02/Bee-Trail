@@ -6,7 +6,7 @@ LINKCV = `pkg-config --libs opencv`
 FLAGCV = `pkg-config --cflags opencv`
 OBJ = ${SRC_ALL:.cc=.o}
 SRC_ALL = $(SRC) $(SRC_VID) $(SRC_SWA) $(SRC_FFU)
-SRC = $(addprefix $(DIR_SRC)/,main.cc )
+SRC = $(addprefix $(DIR_SRC)/,main.cc timer.cc )
 
 SRC_VID = $(addprefix $(DIR_VID)/, video-manager.cc)
 DIR_VID = $(DIR_SRC)/video

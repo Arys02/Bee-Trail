@@ -1,9 +1,7 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 #include <string>
-
-//#include "option-parser.hh"
-//#include "option-manager.hh"
+#include "timer.hh"
 
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
@@ -26,7 +24,8 @@ void exit_help(boost::program_options::options_description desc)
   exit(1);
 }
 
-void print_help(std::ostream& output_stream, boost::program_options::options_description desc)
+void print_help(std::ostream& output_stream,
+    boost::program_options::options_description desc)
 {
   output_stream << desc;
 }
@@ -95,18 +94,20 @@ int main(int argc, char **argv)
     beetrail::VideoManager(path_to_video);
 
 
-  //std::shared_ptr<beetrail::Pso> pso_p = std::make_shared<beetrail::Pso>(pso);
-
-
-
   /* Main loop */
   int stop = 0;
-  while (!stop)
   {
-    cv::Mat frame = video_manager.frame_get();
-    pso.update(frame);
-    video_manager.pretty_print(pso, frame);
-    video_manager.display_frame(frame, stop);
+    double z = 0;
+    Timer global_timer(z, std::cout, "Global time: ");
+    while (!stop)
+    {
+      double x = 0;
+      Timer local_timer(x, std::cout, "Time for an iteration: ");
+      cv::Mat frame = video_manager.frame_get();
+      pso.update(frame);
+      video_manager.pretty_print(pso, frame);
+      video_manager.display_frame(frame, stop);
+    }
   }
 
   return 0;
