@@ -2,6 +2,7 @@
 #include <boost/program_options.hpp>
 #include <string>
 #include "timer.hh"
+#include <fstream>
 
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
@@ -57,7 +58,10 @@ int main(int argc, char **argv)
      "Number of frames to analyse per second")
 
     ("number,n", bpo::value<int>()->default_value(50),
-     "Number of Particle per swarm");
+     "Number of Particle per swarm")
+
+    ("benchmark,b", bpo::value<std::string>()->default_value(""),
+      "File name to save benchmark results in");
 
   /* Parse options */
   try
@@ -93,16 +97,21 @@ int main(int argc, char **argv)
     beetrail::VideoManager() :
     beetrail::VideoManager(path_to_video);
 
+  /* Benchmark file log */
+  std::string path_to_benchmark_file = vm["benchmark"].as<std::string>();
+  std::ofstream benchmark_file;
+  benchmark_file.open(path_to_benchmark_file);
+
 
   /* Main loop */
   int stop = 0;
   {
     double z = 0;
-    Timer global_timer(z, std::cout, "Global time: ");
+    Timer global_timer(z, benchmark_file, "Global time: ");
     while (!stop)
     {
       double x = 0;
-      Timer local_timer(x, std::cout, "Time for an iteration: ");
+      Timer local_timer(x, benchmark_file, "Time for an iteration: ");
       cv::Mat frame = video_manager.frame_get();
       pso.update(frame);
       video_manager.pretty_print(pso, frame);
