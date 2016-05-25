@@ -28,6 +28,7 @@ namespace beetrail
 
     for (int i = 0 ; i < nb_particles_ ; i++)
     {
+      // TODO change magic number for windows size
       int randomX = random() % 640;
       int randomY = random() % 480;
 
@@ -77,6 +78,7 @@ namespace beetrail
     evaluate();
     for (auto p : list_particle_)
     {
+
       p->update(best_pos_);
     }
 

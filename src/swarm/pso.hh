@@ -49,7 +49,7 @@ namespace beetrail
       //template <typename FitnessFunction>
       Pso(int nb_particles /*, FitnessFunction& FitnessFunction */);
 
-      Pso(int nb_particles, enum topology topology);
+      //Pso(int nb_particles, enum topology topology);
 
       /*!
        * \brief
