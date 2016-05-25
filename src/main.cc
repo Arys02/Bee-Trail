@@ -74,7 +74,9 @@ int main(int argc, char **argv)
   /* Create PSO with input image */
   //ImageDescriptor img(vm["object"].as<string>());
   //
-  beetrail::Pso pso(100);
+  //
+  beetrail::DistanceMiddle dst_mid();
+  beetrail::Pso<DistanceMiddle> pso(100, dst_mid);
 
   /* Set attributes depending on parsed input */
   /* Topology type */
@@ -105,7 +107,7 @@ int main(int argc, char **argv)
   {
     cv::Mat frame = video_manager.frame_get();
     pso.update(frame);
-    video_manager.pretty_print(pso, frame);
+    //video_manager.pretty_print(pso, frame);
     video_manager.display_frame(frame, stop);
   }
 

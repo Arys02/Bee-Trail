@@ -26,7 +26,8 @@ namespace beetrail
    *  this class will make easier the frame managment
    *  of the PSO
    */
-  class Pso;
+  template <typename T>
+  class Pso<T>;
   class Particle
   {
     public:
@@ -39,7 +40,9 @@ namespace beetrail
        * \param accel : initial of the particle 
        *
        */
-      Particle(Vector2 pos, Vector2 speed, Pso* pso)
+
+      template <typename T>
+      Particle(Vector2 pos, Vector2 speed, Pso<T>* pso)
         : best_pt_(pos), pos_(pos), speed_(speed), pso_(pso)
       { }
 
@@ -59,6 +62,8 @@ namespace beetrail
       Vector2 best_pt_;
       Vector2 pos_;
       Vector2 speed_;
-      Pso* pso_;
+
+      template <typename T>
+      Pso<T>* pso_;
   };
 }

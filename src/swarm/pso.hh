@@ -25,7 +25,7 @@ namespace beetrail
    *  this class will make easier the frame managment
    *  of the PSO
    */
-//  template <typename FF>
+  template <typename FF>
   class Pso
   {
 
@@ -46,8 +46,7 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
-      //template <typename FitnessFunction>
-      Pso(int nb_particles /*, FitnessFunction& FitnessFunction */);
+      Pso(int nb_particles , FF& fit_fun );
 
       //Pso(int nb_particles, enum topology topology);
 
@@ -79,7 +78,9 @@ namespace beetrail
       double accel2_;
       double weight_;
 
-//      FitnessFunction& ff_;
+      FF& fit_fun_;
 
   };
 }
+
+#include "pso.hxx"

@@ -75,8 +75,9 @@ namespace beetrail
         }
     }
 
-  void
-    VideoManager::pretty_print(Pso& pso, Mat frame)
+  /*
+  template <typename T>
+  void VideoManager::pretty_print(Pso<T>& pso, Mat frame)
     {
       for (auto p : pso.list_particle_get())
       {
@@ -86,6 +87,7 @@ namespace beetrail
         draw_square(2, x, y, frame, 0, 255, 0);
       }
     }
+    */
 
   void VideoManager::display_frame(cv::Mat frame, int& stop)
   {

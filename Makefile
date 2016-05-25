@@ -10,7 +10,7 @@ SRC = $(addprefix $(DIR_SRC)/,main.cc )
 
 SRC_VID = $(addprefix $(DIR_VID)/, video-manager.cc)
 DIR_VID = $(DIR_SRC)/video
-SRC_SWA = $(addprefix $(DIR_SWA)/, pso.cc particle.cc)
+SRC_SWA = $(addprefix $(DIR_SWA)/, particle.cc)
 DIR_SWA = $(DIR_SRC)/swarm
 SRC_FFU = $(addprefix $(DIR_FFU)/, image-descriptor.cc distance-middle.cc)
 DIR_FFU = $(DIR_SRC)/ffunctions
