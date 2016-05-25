@@ -4,7 +4,7 @@
 #include <vector>
 #include "opencv2/opencv.hpp"
 #include "particle.hh"
-#include "pso-settings.hh"
+//#include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 #include "ffunctions/distance-middle.hh"
@@ -47,6 +47,8 @@ namespace beetrail
        *
        */
       Pso(int nb_particles);
+
+      Pso(int nb_particles, enum topology topology);
 
       /*!
        * \brief
