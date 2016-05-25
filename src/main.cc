@@ -1,6 +1,11 @@
 #include <iostream>
+#include <boost/program_options.hpp>
+#include <string>
+
 #include "option-parser.hh"
 #include "option-manager.hh"
+
+#include "swarm/pso.hh"
 #include "video/video-manager.hh"
 
 
@@ -15,11 +20,17 @@
 
 
 
-private void exit_help(boost::program_options::options_description desc)
+void exit_help(boost::program_options::options_description desc)
 {
-  std::err << desc;
+  std::cerr << desc;
   exit(1);
 }
+
+void print_help(std::ostream& output_stream, boost::program_options::options_description desc)
+{
+  output_stream << desc;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -57,39 +68,44 @@ int main(int argc, char **argv)
   }
   catch (std::exception& e)
   {
-    exit_help();
+    exit_help(desc);
   }
 
   /* Create PSO with input image */
-  ImageDescriptor img(vm["object"].as<string>());
-  Pso pso(img);
+  //ImageDescriptor img(vm["object"].as<string>());
+  //
+  beetrail::Pso pso(100);
 
   /* Set attributes depending on parsed input */
   /* Topology type */
-  std::string topology(vm["topology"].as<std::string());
-  topology ? pso.set_topology(topology) : pso.set_topology("star");;
+  //std::string topology(vm["topology"].as<std::string());
+  //topology ? pso.set_topology(topology) : pso.set_topology("star");;
 
   /* Frames to analyze per second */
-  int frames_per_second = vm["frames"].as<int>();
-  if (frames_per_second < 0)
-    exit_help();
-  pso.set_frames_per_second(frames_per_second);
+  //int frames_per_second = vm["frames"].as<int>();
+  //if (frames_per_second < 0)
+   // exit_help();
+  //pso.set_frames_per_second(frames_per_second);
 
   /* Input video */
-  std::string path_to_video = vm["video"].as<string>();
-  VideoManager video_manager = path_to_video == "" ?
-    VideoManager() :
-    VideoManager(path_to_video);
+  std::string path_to_video = vm["video"].as<std::string>();
+  beetrail::VideoManager video_manager = path_to_video == "" ?
+    beetrail::VideoManager() :
+    beetrail::VideoManager(path_to_video);
+
+
+  std::shared_ptr<beetrail::Pso> pso_p = std::make_shared<beetrail::Pso>(pso);
+
 
 
   /* Main loop */
   int stop = 0;
   while (!stop)
   {
-    cv::Mat frame = vm.frame_get();
+    cv::Mat frame = video_manager.frame_get();
     pso.update(frame);
-    vm.pretty_print(pso, frame);
-    vm.display_frame(frame, stop);
+    video_manager.pretty_print(pso_p, frame);
+    video_manager.display_frame(frame, stop);
   }
 
   return 0;

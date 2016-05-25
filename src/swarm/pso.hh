@@ -28,6 +28,15 @@ namespace beetrail
    */
   class Pso
   {
+
+    public :
+      enum topology
+      {
+        star = 0,
+        ring = 1
+      };
+
+
     public:
       /*!
        * \brief Constructor
@@ -37,8 +46,7 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
-      Pso(/*std::shared_ptr<PsoSettings> pso_opt,
-          */std::shared_ptr<ImageDescriptor> img_desc);
+      Pso(int nb_particles);
 
       /*!
        * \brief
@@ -47,6 +55,8 @@ namespace beetrail
       void update(cv::Mat frame);
 
       void evaluate();
+
+      void init();
 
 //      std::shared_ptr<PsoSettings> pso_opt_get();
 
@@ -57,7 +67,18 @@ namespace beetrail
     private:
       std::vector<std::shared_ptr<Particle>> list_particle_;
       //std::shared_ptr<PsoSettings> pso_opt_;
-      std::shared_ptr<ImageDescriptor> img_desc_;
       Vector2 best_pos_;
+
+
+      int nb_particles_;
+      enum topology topology_;
+      int frames_per_second_;
+      bool pretty_printer_on_;
+      bool time_count_on_;
+
+      double acceleration1_;
+      double acceleration2_;
+      double weight_;
+
   };
 }

@@ -13,7 +13,7 @@ namespace beetrail
 
   void TheProgram::launch_pso()
   {
-    pso = std::make_shared<Pso>(pso_settings, id); //pso.init()
+    pso = std::make_shared<Pso>(100); //pso.init()
     int stop = 0;
     while (!stop)
     {

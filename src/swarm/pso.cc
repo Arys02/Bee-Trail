@@ -3,20 +3,31 @@
 namespace beetrail
 {
 
-  Pso::Pso(/*std::shared_ptr<PsoSettings> pso_opt,
-          */std::shared_ptr<ImageDescriptor> img_desc)
-    : /*pso_opt_(pso_opt), */img_desc_(img_desc)
+  Pso::Pso(int nb_particles)
+    : nb_particles_(nb_particles)
+
   {
-    pso_opt_ = pso_opt;
-    img_desc_ = img_desc;
+      topology_ = star;
+      frames_per_second_ = 1;
+      pretty_printer_on_ = true;
+      time_count_on_ = false;
+
+      acceleration1_ = 2;
+      acceleration2_ = 2;
+      weight_ = 1.1;
+
+      this->init();
+
+      /* Update best swarm position and best position for each particle */
+  }
+
+  void Pso::init()
+  {
     list_particle_ = std::vector<std::shared_ptr<Particle>>();
-
-    int nb_particles = pso_opt->get_nb_particles();
-
 
     srand(time(NULL));
 
-    for (int i = 0 ; i < nb_particles ; i++)
+    for (int i = 0 ; i < nb_particles_ ; i++)
     {
       int randomX = random() % 640;
       int randomY = random() % 480;
@@ -27,11 +38,11 @@ namespace beetrail
 
     //TODO Will be changed when calling evaluation function on this random swarm
     /* Tmp solution to best_particle find */
-    int r = random() % nb_particles;
+    int r = random() % nb_particles_;
     best_pos_ = list_particle_[r]->best_pt_get();
-    /* Update best swarm position and best position for each particle */
     evaluate();
   }
+
 
   void Pso::evaluate()
   {
@@ -75,15 +86,4 @@ namespace beetrail
     return list_particle_;
   }
 
-  /*std::shared_ptr<PsoSettings>
-  Pso::pso_opt_get()
-  {
-    return pso_opt_;
-  }*/
-
-  std::shared_ptr<ImageDescriptor>
-  Pso::img_desc_get()
-  {
-    return img_desc_;
-  }
 }
