@@ -37,8 +37,8 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
-      Pso(std::shared_ptr<PsoSettings> pso_opt,
-          std::shared_ptr<ImageDescriptor> img_desc);
+      Pso(/*std::shared_ptr<PsoSettings> pso_opt,
+          */std::shared_ptr<ImageDescriptor> img_desc);
 
       /*!
        * \brief
@@ -48,7 +48,7 @@ namespace beetrail
 
       void evaluate();
 
-      std::shared_ptr<PsoSettings> pso_opt_get();
+//      std::shared_ptr<PsoSettings> pso_opt_get();
 
       std::shared_ptr<ImageDescriptor> img_desc_get();
 
@@ -56,7 +56,7 @@ namespace beetrail
 
     private:
       std::vector<std::shared_ptr<Particle>> list_particle_;
-      std::shared_ptr<PsoSettings> pso_opt_;
+      //std::shared_ptr<PsoSettings> pso_opt_;
       std::shared_ptr<ImageDescriptor> img_desc_;
       Vector2 best_pos_;
   };

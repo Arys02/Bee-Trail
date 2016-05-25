@@ -3,9 +3,9 @@
 namespace beetrail
 {
 
-  Pso::Pso(std::shared_ptr<PsoSettings> pso_opt,
-          std::shared_ptr<ImageDescriptor> img_desc)
-    : pso_opt_(pso_opt), img_desc_(img_desc)
+  Pso::Pso(/*std::shared_ptr<PsoSettings> pso_opt,
+          */std::shared_ptr<ImageDescriptor> img_desc)
+    : /*pso_opt_(pso_opt), */img_desc_(img_desc)
   {
     pso_opt_ = pso_opt;
     img_desc_ = img_desc;
@@ -75,11 +75,11 @@ namespace beetrail
     return list_particle_;
   }
 
-  std::shared_ptr<PsoSettings>
+  /*std::shared_ptr<PsoSettings>
   Pso::pso_opt_get()
   {
     return pso_opt_;
-  }
+  }*/
 
   std::shared_ptr<ImageDescriptor>
   Pso::img_desc_get()
