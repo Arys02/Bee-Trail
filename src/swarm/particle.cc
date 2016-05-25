@@ -3,10 +3,6 @@
 
 namespace beetrail
 {
-  double accel1 = 2;
-  double accel2 = 2;
-  double weight = 1.1;
-
   Vector2 Particle::best_pt_get()
   {
     return best_pt_;
@@ -45,14 +41,12 @@ namespace beetrail
     double r = (double) (rand() % 1000) / (double) 1000;
 
     /* Compute new speed */
-    speed_ = weight * speed_
-      + accel1 * r * (best_pt_ - pos_)
-      + accel2 * r * (best_swarm_pos - pos_);
-    //std::cout << "speed = " << speed_ << std::endl;
+    speed_ = pso_->weight_ * speed_
+      + pso_->accel1_ * r * (best_pt_ - pos_)
+      + pso_->accel2_ * r * (best_swarm_pos - pos_);
 
        cap_speed(10);
     pos_ = pos_ + speed_;
-    //std::cout << "X = " << pos_.x << ", Y = " << pos_.y << std::endl;
   }
 
   void Particle::cap_speed(double max)

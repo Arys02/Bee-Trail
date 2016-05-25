@@ -25,6 +25,7 @@ namespace beetrail
    *  this class will make easier the frame managment
    *  of the PSO
    */
+//  template <typename FF>
   class Pso
   {
 
@@ -45,7 +46,8 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
-      Pso(int nb_particles);
+      //template <typename FitnessFunction>
+      Pso(int nb_particles /*, FitnessFunction& FitnessFunction */);
 
       Pso(int nb_particles, enum topology topology);
 
@@ -59,17 +61,11 @@ namespace beetrail
 
       void init();
 
-      //void cap_speed(double max, std::shared_ptr<Particule> p);
-
-//      std::shared_ptr<PsoSettings> pso_opt_get();
-
-      //std::shared_ptr<ImageDescriptor> img_desc_get();
-
       std::vector<std::shared_ptr<Particle>> list_particle_get();
 
     public:
+
       std::vector<std::shared_ptr<Particle>> list_particle_;
-      //std::shared_ptr<PsoSettings> pso_opt_;
       Vector2 best_pos_;
 
 
@@ -82,6 +78,8 @@ namespace beetrail
       double accel1_;
       double accel2_;
       double weight_;
+
+//      FitnessFunction& ff_;
 
   };
 }

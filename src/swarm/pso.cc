@@ -77,85 +77,11 @@ namespace beetrail
     evaluate();
     for (auto p : list_particle_)
     {
-      /*
-      double r = (double) (rand() % 1000) / (double) 1000;
-      p->speed_ = weight_ * p->speed_
-      + accel1_ * r * (p->best_pt_ - p->pos_)
-      + accel2_ * r * (best_pos_ - p->pos_);
-
-
-       cap_speed(10, p);
-       */
-
-
       p->update(best_pos_);
     }
 
     return;
   }
-
-  /*
- void Pso::cap_speed(double max, std::shared_ptr<Particle> p)
-  {
-    double k;
-    if (abs(p->speed_.x) > max)
-    {
-      k = abs(10 / p->speed_.x);
-      p->speed_.x = p->speed_.x < 0 ? -max : max;
-      p->speed_.y *= k;
-    }
-
-    if (abs(p->speed_.y) > max)
-    {
-      k = abs(10 / p->speed_.y);
-      p->speed_.y = p->speed_.y < 0 ? -max : max;
-      p->speed_.x *= k;
-    }
-  }
-
-
- *
- * void Particle::update(Vector2 best_swarm_pos)
-  {
-
-    // Constants 
-    double r = (double) (rand() % 1000) / (double) 1000;
-
-    // Compute new speed 
-    speed_ = weight * speed_
-      + accel1 * r * (best_pt_ - pos_)
-      + accel2 * r * (best_swarm_pos - pos_);
-    //std::cout << "speed = " << speed_ << std::endl;
-
-       cap_speed(10);
-    pos_ = pos_ + speed_;
-    //std::cout << "X = " << pos_.x << ", Y = " << pos_.y << std::endl;
-  }
-
-  void Particle::cap_speed(double max)
-  {
-    double k;
-    if (abs(speed_.x) > max)
-    {
-      k = abs(10 / speed_.x);
-      speed_.x = speed_.x < 0 ? -max : max;
-      speed_.y *= k;
-    }
-
-    if (abs(speed_.y) > max)
-    {
-      k = abs(10 / speed_.y);
-      speed_.y = speed_.y < 0 ? -max : max;
-      speed_.x *= k;
-    }
-  }
-
- *
- *
- * */
-
-
-
 
   std::vector<std::shared_ptr<Particle>> Pso::list_particle_get()
   {
