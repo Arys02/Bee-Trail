@@ -97,10 +97,13 @@ int main(int argc, char **argv)
     beetrail::VideoManager() :
     beetrail::VideoManager(path_to_video);
 
-  /* Benchmark file log */
+  /* Benchmark file log. Open output stream */
   std::string path_to_benchmark_file = vm["benchmark"].as<std::string>();
   std::ofstream benchmark_file;
-  benchmark_file.open(path_to_benchmark_file);
+  if (path_to_benchmark_file != "")
+    benchmark_file.open(path_to_benchmark_file);
+  else
+    std::ofstream benchmark_file(0);
 
 
   /* Main loop */
