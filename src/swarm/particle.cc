@@ -1,8 +1,11 @@
 #include "particle.hh"
+#include "pso.hh"
 
 namespace beetrail
 {
-  double weight = PsoSettings::get_weight();
+  double accel1 = 2;
+  double accel2 = 2;
+  double weight = 1.1;
 
   Vector2 Particle::best_pt_get()
   {
@@ -43,8 +46,8 @@ namespace beetrail
 
     /* Compute new speed */
     speed_ = weight * speed_
-      + PsoSettings::get_acceleration1() * r * (best_pt_ - pos_)
-      + PsoSettings::get_acceleration2() * r * (best_swarm_pos - pos_);
+      + accel1 * r * (best_pt_ - pos_)
+      + accel2 * r * (best_swarm_pos - pos_);
     //std::cout << "speed = " << speed_ << std::endl;
 
        cap_speed(10);

@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 #include "opencv2/opencv.hpp"
-#include "pso-settings.hh"
+//#include "pso.hh"
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 
@@ -54,10 +54,11 @@ namespace beetrail
 
       void update(Vector2 best_swarm_point);
 
-    private:
+    public:
       void cap_speed(double max);
       Vector2 best_pt_;
       Vector2 pos_;
       Vector2 speed_;
+      //Pso pso_;
   };
 }

@@ -4,7 +4,6 @@
 #include <vector>
 #include "opencv2/opencv.hpp"
 #include "particle.hh"
-//#include "pso-settings.hh"
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 #include "ffunctions/distance-middle.hh"
@@ -36,8 +35,8 @@ namespace beetrail
         ring = 1
       };
 
-
     public:
+
       /*!
        * \brief Constructor
        *
@@ -60,13 +59,15 @@ namespace beetrail
 
       void init();
 
+      //void cap_speed(double max, std::shared_ptr<Particule> p);
+
 //      std::shared_ptr<PsoSettings> pso_opt_get();
 
-      std::shared_ptr<ImageDescriptor> img_desc_get();
+      //std::shared_ptr<ImageDescriptor> img_desc_get();
 
       std::vector<std::shared_ptr<Particle>> list_particle_get();
 
-    private:
+    public:
       std::vector<std::shared_ptr<Particle>> list_particle_;
       //std::shared_ptr<PsoSettings> pso_opt_;
       Vector2 best_pos_;
@@ -78,8 +79,8 @@ namespace beetrail
       bool pretty_printer_on_;
       bool time_count_on_;
 
-      double acceleration1_;
-      double acceleration2_;
+      double accel1_;
+      double accel2_;
       double weight_;
 
   };
