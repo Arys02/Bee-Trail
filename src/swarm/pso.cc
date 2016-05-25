@@ -31,10 +31,10 @@ namespace beetrail
       int randomX = random() % 640;
       int randomY = random() % 480;
 
-      Particle p(Vector2(randomX, randomY), Vector2(2, 2));
+      Particle p(Vector2(randomX, randomY), Vector2(2, 2), this);
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
-              Vector2(randomX, randomY), Vector2(2, 2))));
+              Vector2(randomX, randomY), Vector2(2, 2), this)));
     }
 
     //TODO Will be changed when calling evaluation function on this random swarm

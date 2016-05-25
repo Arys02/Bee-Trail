@@ -2,7 +2,6 @@
 #include <string>
 #include <memory>
 #include "opencv2/opencv.hpp"
-//#include "pso.hh"
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 
@@ -27,6 +26,7 @@ namespace beetrail
    *  this class will make easier the frame managment
    *  of the PSO
    */
+  class Pso;
   class Particle
   {
     public:
@@ -39,8 +39,8 @@ namespace beetrail
        * \param accel : initial of the particle 
        *
        */
-      Particle(Vector2 pos, Vector2 speed)
-        : best_pt_(pos), pos_(pos), speed_(speed)
+      Particle(Vector2 pos, Vector2 speed, Pso* pso)
+        : best_pt_(pos), pos_(pos), speed_(speed), pso_(pso)
       { }
 
       Vector2 best_pt_get();
@@ -59,6 +59,6 @@ namespace beetrail
       Vector2 best_pt_;
       Vector2 pos_;
       Vector2 speed_;
-      //Pso pso_;
+      Pso* pso_;
   };
 }
