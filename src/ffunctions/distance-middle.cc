@@ -10,4 +10,9 @@ namespace beetrail
 
     //return abs(cv::norm(p) - cv::norm(middle));
   }
+
+  double DistanceMiddle::operator()(Vector2 p)
+  {
+    return DistanceMiddle::compare_positions(p);
+  }
 }
