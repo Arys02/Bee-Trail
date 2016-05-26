@@ -107,7 +107,7 @@ int main(int argc, char **argv)
   {
     cv::Mat frame = video_manager.frame_get();
     pso.update(frame);
-    //video_manager.pretty_print(pso, frame);
+    video_manager.pretty_print(pso.list_particle_get(), frame);
     video_manager.display_frame(frame, stop);
   }
 

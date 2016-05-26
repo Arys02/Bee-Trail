@@ -75,10 +75,9 @@ namespace beetrail
         }
     }
 
-  template <typename T>
-  void VideoManager::pretty_print(Pso<T>& pso, cv::Mat frame)
+  void VideoManager::pretty_print(p_vector particles, cv::Mat frame)
     {
-      for (auto p : pso.list_particle_get())
+      for (auto p : particles)
       {
         double x = p->pos_get().x;
         double y = p->pos_get().y;
