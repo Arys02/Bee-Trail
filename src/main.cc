@@ -3,20 +3,10 @@
 #include <string>
 #include "timer.hh"
 #include <fstream>
+#include <sstream>
 
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
-
-
-/*int main(int argc, char **argv)
-{
-  beetrail::OptionParser parser(argc, argv);
-  parser.parse_options();
-  beetrail::OptionManager manager(parser);
-  return manager.action();
-}*/
-
-
 
 
 void exit_help(boost::program_options::options_description desc)
@@ -107,6 +97,7 @@ int main(int argc, char **argv)
 
 
   /* Main loop */
+  int iteration_i = 1;
   int stop = 0;
   {
     double z = 0;
@@ -114,11 +105,15 @@ int main(int argc, char **argv)
     while (!stop)
     {
       double x = 0;
-      Timer local_timer(x, benchmark_file, "Time for an iteration: ");
+      std::ostringstream oss;
+      oss << "Time for iteration " << iteration_i << ": ";
+      Timer local_timer(x, benchmark_file, oss.str());
       cv::Mat frame = video_manager.frame_get();
       pso.update(frame);
       video_manager.pretty_print(pso, frame);
       video_manager.display_frame(frame, stop);
+
+      iteration_i++;
     }
   }
 
