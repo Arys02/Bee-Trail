@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "opencv2/opencv.hpp"
-//#include "swarm/pso.hh"
+#include "swarm/pso.hh"
 #include <unistd.h>
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
@@ -77,8 +77,8 @@ namespace beetrail
       void draw_square(int size, int x, int y, cv::Mat frame,
           int r, int g, int b);
 
-      //template <typename T>
-      //void pretty_print(Pso<T>& pso, cv::Mat frame);
+      template <typename T>
+      void pretty_print(Pso<T>& pso, cv::Mat frame);
 
       void display_frame(cv::Mat frame, int& stop);
 

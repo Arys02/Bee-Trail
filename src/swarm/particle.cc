@@ -40,9 +40,9 @@ namespace beetrail
     double r = (double) (rand() % 1000) / (double) 1000;
 
     /* Compute new speed */
-    speed_ = pso_->weight_ * speed_
-      + pso_->accel1_ * r * (best_pt_ - pos_)
-      + pso_->accel2_ * r * (best_swarm_pos - pos_);
+    speed_ = weight_ * speed_
+      + accel1_ * r * (best_pt_ - pos_)
+      + accel2_ * r * (best_swarm_pos - pos_);
 
        cap_speed(10);
     pos_ = pos_ + speed_;

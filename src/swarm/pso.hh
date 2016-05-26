@@ -46,7 +46,7 @@ namespace beetrail
        * \param img_desc_ :
        *
        */
-      Pso(int nb_particles , FF& fit_fun );
+      Pso(int nb_particles , FF& fit_fun);
 
       //Pso(int nb_particles, enum topology topology);
 

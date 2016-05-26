@@ -35,7 +35,7 @@ namespace beetrail
       int randomX = random() % 640;
       int randomY = random() % 480;
 
-      Particle p(Vector2(randomX, randomY), Vector2(2, 2), this);
+      Particle p(Vector2(randomX, randomY), Vector2(2, 2) , this);
 
       list_particle_.push_back(std::make_shared<Particle>(Particle(
               Vector2(randomX, randomY), Vector2(2, 2), this)));

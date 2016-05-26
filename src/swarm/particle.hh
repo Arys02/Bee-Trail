@@ -2,7 +2,6 @@
 #include <string>
 #include <memory>
 #include "opencv2/opencv.hpp"
-#include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
@@ -28,6 +27,8 @@ namespace beetrail
    */
   template <typename T>
   class Pso;
+
+
   class Particle
   {
     public:
@@ -41,9 +42,14 @@ namespace beetrail
        *
        */
 
-      Particle(Vector2 pos, Vector2 speed, Pso<T>* pso)
-        : best_pt_(pos), pos_(pos), speed_(speed), pso_(pso)
-      { }
+      template <typename T>
+      Particle(Vector2 pos, Vector2 speed  , Pso<T>* pso )
+        : best_pt_(pos), pos_(pos), speed_(speed)
+      {
+        accel1_ = pso->accel1_;
+        accel2_ = pso->accel2_;
+        weight_ = pso->weight_;
+      }
 
       Vector2 best_pt_get();
       void best_pt_set(Vector2 new_pt);
@@ -62,6 +68,10 @@ namespace beetrail
       Vector2 pos_;
       Vector2 speed_;
 
-      Pso* pso_;
+
+      double accel1_;
+      double accel2_;
+
+      double weight_;
   };
 }

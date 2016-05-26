@@ -1,7 +1,6 @@
 #pragma once
 #include <math.h>
 #include "swarm/particle.hh"
-#include "swarm/pso.hh"
 
 namespace beetrail
 {

@@ -7,6 +7,7 @@
 
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
+#include "ffunctions/distance-middle.hh"
 
 
 /*int main(int argc, char **argv)
@@ -24,7 +25,19 @@
 
 int main(int argc, char **argv)
 {
-  beetrail::DistanceMiddle dst_mid();
-  beetrail::Pso<DistanceMiddle> pso(100, dst_mid);
- return 0;
+  beetrail::DistanceMiddle dst_mid;
+  beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
+  /* Main loop */
+  //int stop = 0;
+  /*
+  while (!stop)
+  {
+    cv::Mat frame = video_manager.frame_get();
+    pso.update(frame);
+    //video_manager.pretty_print(pso, frame);
+    video_manager.display_frame(frame, stop);
+  }
+  */
+
+  return 0;
 }

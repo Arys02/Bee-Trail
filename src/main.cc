@@ -75,8 +75,8 @@ int main(int argc, char **argv)
   //ImageDescriptor img(vm["object"].as<string>());
   //
   //
-  beetrail::DistanceMiddle dst_mid();
-  beetrail::Pso<DistanceMiddle> pso(100, dst_mid);
+  beetrail::DistanceMiddle dst_mid;
+  beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
 
   /* Set attributes depending on parsed input */
   /* Topology type */
