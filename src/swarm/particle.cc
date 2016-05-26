@@ -1,5 +1,4 @@
 #include "particle.hh"
-#include "pso.hh"
 
 namespace beetrail
 {

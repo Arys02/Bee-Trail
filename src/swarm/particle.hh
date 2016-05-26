@@ -27,7 +27,7 @@ namespace beetrail
    *  of the PSO
    */
   template <typename T>
-  class Pso<T>;
+  class Pso;
   class Particle
   {
     public:
@@ -41,7 +41,6 @@ namespace beetrail
        *
        */
 
-      template <typename T>
       Particle(Vector2 pos, Vector2 speed, Pso<T>* pso)
         : best_pt_(pos), pos_(pos), speed_(speed), pso_(pso)
       { }
@@ -63,7 +62,6 @@ namespace beetrail
       Vector2 pos_;
       Vector2 speed_;
 
-      template <typename T>
-      Pso<T>* pso_;
+      Pso* pso_;
   };
 }
