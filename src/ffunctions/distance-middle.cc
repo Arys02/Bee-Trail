@@ -2,7 +2,7 @@
 
 namespace beetrail
 {
-  double DistanceMiddle::compare_positions(Vector2 p)
+  double DistanceMiddle::compare_positions(cv::Mat frame, Vector2 p)
   {
     Vector2 middle = Vector2(320, 240);
 
@@ -11,8 +11,8 @@ namespace beetrail
     //return abs(cv::norm(p) - cv::norm(middle));
   }
 
-  double DistanceMiddle::operator()(Vector2 p)
+  double DistanceMiddle::operator()(cv::Mat frame, Vector2 p)
   {
-    return compare_positions(p);
+    return compare_positions(frame, p);
   }
 }

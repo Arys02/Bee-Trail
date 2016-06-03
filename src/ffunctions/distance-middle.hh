@@ -10,8 +10,8 @@ namespace beetrail
       /* The closest to 0, the closest to the middle */
       using Vector2 = cv::Point2d;
 
-      static double compare_positions(Vector2 p);
-      double operator()(Vector2 p);
+      static double compare_positions(cv::Mat frame, Vector2 p);
+      double operator()(cv::Mat frame, Vector2 p);
   };
 
 }

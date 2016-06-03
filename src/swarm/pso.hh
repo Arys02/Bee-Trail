@@ -56,13 +56,13 @@ namespace beetrail
        */
       void update(cv::Mat frame);
 
-      void evaluate();
+      void evaluate(cv::Mat frame);
 
-      void init();
 
       std::vector<std::shared_ptr<Particle>> list_particle_get();
 
     public:
+      void init(int width, int height);
 
       std::vector<std::shared_ptr<Particle>> list_particle_;
       Vector2 best_pos_;

@@ -113,6 +113,8 @@ int main(int argc, char **argv)
       Timer local_timer(x, benchmark_file, oss.str());
 
       cv::Mat frame = video_manager.frame_get();
+      if (iteration_i == 1)
+        pso.init(frame.cols, frame.rows);
       pso.update(frame);
       video_manager.pretty_print(pso.list_particle_get(), frame);
       video_manager.display_frame(frame, stop);

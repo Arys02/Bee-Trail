@@ -1,3 +1,4 @@
+#CXX = gcc-4.9
 CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video -O0
 CXXLIBS = $(FLAGCV) $(LINKCV)
 DEBUG = -g
