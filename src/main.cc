@@ -7,6 +7,7 @@
 
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
+#include "ffunctions/gray-scale-histogram.hh"
 
 
 void exit_help(boost::program_options::options_description desc)
@@ -68,8 +69,12 @@ int main(int argc, char **argv)
   //ImageDescriptor img(vm["object"].as<string>());
   //
   //
-  beetrail::DistanceMiddle dst_mid;
-  beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
+  //beetrail::DistanceMiddle dst_mid;
+  //beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
+
+  beetrail::GrayScaleHistogram gs(cv::imread("tests/little_black_circle.jpg",
+        CV_LOAD_IMAGE_COLOR), 10);
+  beetrail::Pso<beetrail::GrayScaleHistogram> pso(100, gs);
 
   /* Set attributes depending on parsed input */
   /* Topology type */
@@ -112,7 +117,8 @@ int main(int argc, char **argv)
       oss << "Time for iteration " << iteration_i << ": ";
       Timer local_timer(x, benchmark_file, oss.str());
 
-      cv::Mat frame = video_manager.frame_get();
+      //cv::Mat frame = video_manager.frame_get();
+      cv::Mat frame = cv::imread("tests/back_circle.jpg", CV_LOAD_IMAGE_COLOR);
       if (iteration_i == 1)
         pso.init(frame.cols, frame.rows);
       pso.update(frame);
