@@ -6,18 +6,11 @@ namespace beetrail
   using Vector2 = cv::Point2d;
 
   GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width) //:
-    //square(square_width), image_hist(to_hist(image))
+    //square(square_width), image_hist()
   {
     square = square_width;
-    image_hist = to_hist(image);
-
-    cv::MatND image2 = to_hist(cv::imread("tests/lena.bmp",
-          CV_LOAD_IMAGE_COLOR));
-
-
-//    double comparison =
-  //    cv::compareHist(image_hist, image2, CV_COMP_CORREL);
-
+    //image_hist;
+    to_hist(image, &image_hist);
   }
 
   double GrayScaleHistogram::operator()(cv::Mat frame, Vector2 pos)
@@ -29,13 +22,14 @@ namespace beetrail
       zone_of_interest = get_subimage(frame, pos, this->square);
 
     /* Compare histograms blabla */
-    cv::MatND zone_hist = to_hist(zone_of_interest);
+    cv::Mat zone_hist;
+    to_hist(zone_of_interest, &zone_hist);
 
-    cv::namedWindow("Frame", 1);
-    cv::imshow("Frame", frame);
+    //cv::namedWindow("Frame", 1);
+    //cv::imshow("Frame", frame);
 
-    cv::namedWindow("Zone of interest", 1);
-    cv::imshow("Zone of interest", zone_of_interest);
+    //cv::namedWindow("Zone of interest", 1);
+    //cv::imshow("Zone of interest", zone_of_interest);
 
     double comparison =
       cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
@@ -45,7 +39,7 @@ namespace beetrail
     return comparison;
   }
 
-  cv::MatND GrayScaleHistogram::to_hist(cv::Mat image)
+  void GrayScaleHistogram::to_hist(cv::Mat image, cv::Mat *histogram)
   {
     std::vector<cv::Mat> bgr_planes;
     cv::split(image, bgr_planes);
@@ -54,7 +48,7 @@ namespace beetrail
     const float* histRange = { range };
     bool uniform = true;
     bool accumulate = false;
-    cv::Mat b_hist;//, g_hist, r_hist;
+    cv::Mat b_hist;
 
     for (int i = 0 ; i < bgr_planes[0].rows; i++)
     {
@@ -70,17 +64,24 @@ namespace beetrail
       }
     }
 
-    cv::calcHist(&bgr_planes[0], 1, 0, cv::Mat(), b_hist, 1, &histSize, &histRange,
-        uniform, accumulate);
-    //cv::calcHist(&bgr_planes[1], 1, 0, cv::Mat(), g_hist, 1, &histSize, &histRange,
-      //  uniform, accumulate);
-    //cv::calcHist(&bgr_planes[2], 1, 0, cv::Mat(), r_hist, 1, &histSize, &histRange,
-      //  uniform, accumulate);
+    std::cout << "Avant : " << std::endl;
+    std::cout << "b_hist = " << b_hist << std::endl;
+    std::cout << "Pointer = " << *histogram << std::endl;
+    std::cout << std::endl;
+    cv::calcHist(&bgr_planes[0], 1, 0, cv::Mat(), b_hist, 1,
+        &histSize, &histRange, uniform, accumulate);
 
-    std::cout << "Gray hist: " << b_hist << std::endl;
+    b_hist.copyTo(*histogram);
+    std::cout << "Après : " << std::endl;
+    std::cout << "b_hist = " << b_hist << std::endl;
+    std::cout << "Pointer = " << *histogram << std::endl;
+    std::cout << std::endl;
     std::cout << std::endl;
 
-    return b_hist;
+    b_hist.release();
+    std::cout << "xd";
+
+    /* A la destruction de b_hist, ça explose ffs */
   }
 
   cv::Mat GrayScaleHistogram::get_subimage(

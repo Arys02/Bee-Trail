@@ -72,12 +72,8 @@ int main(int argc, char **argv)
   //beetrail::DistanceMiddle dst_mid;
   //beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
 
-  std::cout << "Black circle\n";
-  beetrail::GrayScaleHistogram gs(cv::imread("tests/black_circle.jpg",
+  beetrail::GrayScaleHistogram gs(cv::imread("tests/little_black_circle.jpg",
         CV_LOAD_IMAGE_COLOR), 200);
-  std::cout << "Yo black circle\n";
-  std::cout << gs.image_hist << std::endl;
-  std::cout << "Yo\n";
   beetrail::Pso<beetrail::GrayScaleHistogram> pso(100, gs);
 
   /* Set attributes depending on parsed input */

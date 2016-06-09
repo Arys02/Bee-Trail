@@ -15,11 +15,11 @@ namespace beetrail
 
       double operator()(cv::Mat frame, Vector2 pos);
 
-      cv::MatND image_hist;
     private:
       int square;
+      cv::Mat image_hist;
 
-      static cv::MatND to_hist(cv::Mat image);
+      static void to_hist(cv::Mat image, cv::Mat *histogram);
       static cv::Mat get_subimage(cv::Mat, Vector2 pos, int square);
   };
 }
