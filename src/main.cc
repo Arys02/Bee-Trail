@@ -71,9 +71,11 @@ int main(int argc, char **argv)
   //
   //beetrail::DistanceMiddle dst_mid;
   //beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
+  //
+  cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
 
   beetrail::GrayScaleHistogram gs(cv::imread("tests/little_black_circle.jpg",
-        CV_LOAD_IMAGE_COLOR), 200);
+        CV_LOAD_IMAGE_COLOR), 200, &frame);
   beetrail::Pso<beetrail::GrayScaleHistogram> pso(100, gs);
 
   /* Set attributes depending on parsed input */
@@ -119,12 +121,12 @@ int main(int argc, char **argv)
         Timer local_timer(x, benchmark_file, oss.str());
 
         //cv::Mat frame = video_manager.frame_get();
-        cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
+        frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
         if (iteration_i == 1)
           pso.init(frame.cols, frame.rows);
 
         for (int a = 0; stop || a < 10; a++)
-          pso.update(frame);
+          pso.update();
 
         video_manager.pretty_print(pso.list_particle_get(), frame);
         video_manager.display_frame(frame, stop);

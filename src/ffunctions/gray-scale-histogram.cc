@@ -5,21 +5,22 @@ namespace beetrail
 {
   using Vector2 = cv::Point2d;
 
-  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width) //:
+  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width, cv::Mat* frame) //:
     //square(square_width), image_hist()
   {
     square = square_width;
     //image_hist;
     to_hist(image, &image_hist);
+    frame_ = frame;
   }
 
-  double GrayScaleHistogram::operator()(cv::Mat frame, Vector2 pos)
+  double GrayScaleHistogram::operator()(Vector2 pos)
   {
     cv::Mat zone_of_interest;
-    if (square > frame.size().width || square > frame.size().height)
-      zone_of_interest = frame;
+    if (square > frame_->size().width || square > frame_->size().height)
+      zone_of_interest = *frame_;
     else
-      zone_of_interest = get_subimage(frame, pos, this->square);
+      zone_of_interest = get_subimage(*frame_, pos, this->square);
 
     /* Compare histograms blabla */
     cv::Mat zone_hist;
@@ -34,7 +35,7 @@ namespace beetrail
     double comparison =
       cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
 
-    std::cout << "Histogram comparison: " << comparison << std::endl;
+    //std::cout << "Histogram comparison: " << comparison << std::endl;
 
     return comparison;
   }
@@ -49,6 +50,8 @@ namespace beetrail
     bool uniform = true;
     bool accumulate = false;
     cv::Mat b_hist;
+
+        /*
 
     for (int i = 0 ; i < bgr_planes[0].rows; i++)
     {
@@ -68,11 +71,13 @@ namespace beetrail
           //std::cout << "--------- llloooooolll --------- \n";
         }
 
-        else 
-          std::cout << "i " << i << " j " << j << "\n";
+        //else 
+         // std::cout << "i " << i << " j " << j << "\n";
         //= grey_value;
+        //
       }
     }
+    */
 
     /*
     std::cout << "Avant : " << std::endl;

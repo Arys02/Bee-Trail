@@ -43,7 +43,7 @@ namespace beetrail
 
 
   template <typename FF>
-  void Pso<FF>::evaluate(cv::Mat frame)
+  void Pso<FF>::evaluate()
   {
     /* Update best position for each particle and swarm */
     for (auto p : list_particle_)
@@ -52,16 +52,16 @@ namespace beetrail
       Vector2 local_best = p->best_pt_get();
       Vector2 current_pos = p->pos_get();
 
-      if (fit_fun_(frame, current_pos) <
-          fit_fun_(frame, local_best))
+      if (fit_fun_(current_pos) <
+          fit_fun_(local_best))
       {
         p->best_pt_set(current_pos);
       }
 
       /* Update global best if current particule is better */
       local_best = p->best_pt_get();
-      if (fit_fun_(frame, local_best) <
-          fit_fun_(frame, best_pos_))
+      if (fit_fun_(local_best) <
+          fit_fun_(best_pos_))
       {
         best_pos_ = local_best;
       }
@@ -70,10 +70,10 @@ namespace beetrail
 
 
   template <typename FF>
-  void Pso<FF>::update(cv::Mat frame)
+  void Pso<FF>::update()
   {
     /* Set best position for swarm and each particle */
-    evaluate(frame);
+    evaluate();
     for (auto p : list_particle_)
     {
       p->update(best_pos_);

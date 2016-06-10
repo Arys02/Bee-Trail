@@ -54,9 +54,9 @@ namespace beetrail
        * \brief
        * \param lol
        */
-      void update(cv::Mat frame);
+      void update();
 
-      void evaluate(cv::Mat frame);
+      void evaluate();
 
 
       std::vector<std::shared_ptr<Particle>> list_particle_get();
