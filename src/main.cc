@@ -111,21 +111,25 @@ int main(int argc, char **argv)
     Timer global_timer(z, benchmark_file, "Global time: ");
     while (!stop)
     {
-      double x = 0;
 
-      std::ostringstream oss;
-      oss << "Time for iteration " << iteration_i << ": ";
-      Timer local_timer(x, benchmark_file, oss.str());
+        double x = 0;
 
-      //cv::Mat frame = video_manager.frame_get();
-      cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
-      if (iteration_i == 1)
-        pso.init(frame.cols, frame.rows);
-      pso.update(frame);
-      video_manager.pretty_print(pso.list_particle_get(), frame);
-      video_manager.display_frame(frame, stop);
+        std::ostringstream oss;
+        oss << "Time for iteration " << iteration_i << ": ";
+        Timer local_timer(x, benchmark_file, oss.str());
 
-      iteration_i++;
+        //cv::Mat frame = video_manager.frame_get();
+        cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
+        if (iteration_i == 1)
+          pso.init(frame.cols, frame.rows);
+
+        for (int a = 0; stop || a < 10; a++)
+          pso.update(frame);
+
+        video_manager.pretty_print(pso.list_particle_get(), frame);
+        video_manager.display_frame(frame, stop);
+
+        iteration_i++;
     }
   }
 

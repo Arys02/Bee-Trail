@@ -60,26 +60,40 @@ namespace beetrail
         int grey_value = (int) ((double) r * 0.3 + (double) g * 0.59
             + (double) b * 0.11);
 
-        bgr_planes[0].at<int>(i, j) = grey_value;
+        //int a = bgr_planes[0].at<int>(i, j);
+        if (bgr_planes[0].at<int>(i, j))
+        {
+          int a = bgr_planes[0].at<int>(i, j);
+
+          //std::cout << "--------- llloooooolll --------- \n";
+        }
+
+        else 
+          std::cout << "i " << i << " j " << j << "\n";
+        //= grey_value;
       }
     }
 
+    /*
     std::cout << "Avant : " << std::endl;
     std::cout << "b_hist = " << b_hist << std::endl;
     std::cout << "Pointer = " << *histogram << std::endl;
     std::cout << std::endl;
+    */
     cv::calcHist(&bgr_planes[0], 1, 0, cv::Mat(), b_hist, 1,
         &histSize, &histRange, uniform, accumulate);
 
     b_hist.copyTo(*histogram);
+    /*
     std::cout << "Après : " << std::endl;
     std::cout << "b_hist = " << b_hist << std::endl;
     std::cout << "Pointer = " << *histogram << std::endl;
     std::cout << std::endl;
     std::cout << std::endl;
+    */
 
     b_hist.release();
-    std::cout << "xd";
+    //std::cout << "xd";
 
     /* A la destruction de b_hist, ça explose ffs */
   }
