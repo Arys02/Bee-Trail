@@ -118,7 +118,8 @@ int main(int argc, char **argv)
       Timer local_timer(x, benchmark_file, oss.str());
 
       //cv::Mat frame = video_manager.frame_get();
-      cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
+      cv::Mat frame = cv::imread("tests/black_circle.jpg",
+          CV_LOAD_IMAGE_COLOR);
       if (iteration_i == 1)
         pso.init(frame.cols, frame.rows);
       pso.update(frame);
