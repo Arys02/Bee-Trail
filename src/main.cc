@@ -72,9 +72,9 @@ int main(int argc, char **argv)
   //beetrail::DistanceMiddle dst_mid;
   //beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
 
-  beetrail::GrayScaleHistogram gs(cv::imread("tests/little_black_circle.jpg",
-        CV_LOAD_IMAGE_COLOR), 200);
-  beetrail::Pso<beetrail::GrayScaleHistogram> pso(100, gs);
+  beetrail::GrayScaleHistogram gs(cv::imread("tests/black-circle-transparent.png",
+        CV_LOAD_IMAGE_COLOR), 30);
+  beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
 
   /* Set attributes depending on parsed input */
   /* Topology type */

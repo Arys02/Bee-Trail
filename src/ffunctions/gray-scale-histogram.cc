@@ -5,8 +5,7 @@ namespace beetrail
 {
   using Vector2 = cv::Point2d;
 
-  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width) //:
-    //square(square_width), image_hist()
+  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width)
   {
     square = square_width;
     to_hist(image, &image_hist);
@@ -20,17 +19,18 @@ namespace beetrail
     else
       zone_of_interest = get_subimage(frame, pos, this->square);
 
-    /* Compare histograms blabla */
+    /* Compare histograms */
     cv::Mat zone_hist;
     to_hist(zone_of_interest, &zone_hist);
 
+    /* Same histograms comparison returns 1 */
     double comparison =
-      cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
+      1 - cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
+    comparison = comparison < 0 ? - comparison : comparison;
 
     std::cout << "Histogram comparison: " << comparison << std::endl;
 
-    /* Same histograms comparison returns 1 */
-    return (1 - comparison);
+    return comparison;
   }
 
   void GrayScaleHistogram::to_hist(cv::Mat image, cv::Mat *histogram)

@@ -1,5 +1,3 @@
-//#include "pso.hh"
-
 namespace beetrail
 {
 
@@ -14,7 +12,7 @@ namespace beetrail
       time_count_on_ = false;
       accel1_ = 2;
       accel2_ = 2;
-      weight_ = 1.1;
+      weight_ = 0.5;
   }
 
 
