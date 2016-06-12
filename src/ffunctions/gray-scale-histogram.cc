@@ -53,10 +53,6 @@ namespace beetrail
   cv::Mat GrayScaleHistogram::get_subimage(
       cv::Mat base_image, Vector2 pos, int square)
   {
-    //pos = Vector2(851.2, 214.2);
-    //square = 200;
-    // base image 400w 850h
-
     int width = base_image.size().width;
     int height = base_image.size().height;
 
@@ -81,13 +77,13 @@ namespace beetrail
 
     if (end_x > width - 1)
     {
-      origin_x -= (width - 1 - end_x);
+      origin_x -= (end_x - width - 1);
       end_x = width - 1;
     }
 
     if (end_y > height - 1)
     {
-      origin_y -= (height - 1 - end_y);
+      origin_y -= (end_y - height - 1);
       end_y = height - 1;
     }
 
