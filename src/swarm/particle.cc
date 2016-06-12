@@ -34,8 +34,6 @@ namespace beetrail
 
   void Particle::update(Vector2 best_swarm_pos)
   {
-    /* Init variables locally (+ annoying casts) */
-
     /* Constants */
     double r = (double) (rand() % 1000) / (double) 1000;
 
@@ -44,25 +42,34 @@ namespace beetrail
       + accel1_ * r * (best_pt_ - pos_)
       + accel2_ * r * (best_swarm_pos - pos_);
 
-       cap_speed(10);
+    std::cout << "Pos: " << std::endl;
+    std::cout << "Global best: " << best_swarm_pos << ". Best: " << best_pt_ <<
+      std::endl;
+    std::cout << "Computed speed: " << speed_ << std::endl;
+    cap_speed(10);
+    std::cout << "New speed: " << speed_ << std::endl;
     pos_ = pos_ + speed_;
   }
 
   void Particle::cap_speed(double max)
   {
     double k;
-    if (abs(speed_.x) > max)
+
+    if (std::abs(speed_.y) > max)
     {
-      k = abs(10 / speed_.x);
-      speed_.x = speed_.x < 0 ? -max : max;
-      speed_.y *= k;
+      k = std::abs(max / speed_.y);
+      speed_.y = speed_.y > 0 ? max : - max;
+
+      speed_.x = k * speed_.x;
     }
 
-    if (abs(speed_.y) > max)
+    if (std::abs(speed_.x) > max)
     {
-      k = abs(10 / speed_.y);
-      speed_.y = speed_.y < 0 ? -max : max;
-      speed_.x *= k;
+      k = abs(max / speed_.x);
+      speed_.x = speed_.x > 0 ? max : - max;
+
+      speed_.y = k * speed_.y;
     }
+
   }
 }

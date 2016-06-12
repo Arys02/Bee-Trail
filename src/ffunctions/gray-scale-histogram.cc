@@ -5,11 +5,12 @@ namespace beetrail
 {
   using Vector2 = cv::Point2d;
 
-  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width, cv::Mat* frame) //:
+  //GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width, cv::Mat* frame) //:
+
     //square(square_width), image_hist()
+  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width)
   {
     square = square_width;
-    //image_hist;
     to_hist(image, &image_hist);
     frame_ = frame;
   }
@@ -22,18 +23,14 @@ namespace beetrail
     else
       zone_of_interest = get_subimage(*frame_, pos, this->square);
 
-    /* Compare histograms blabla */
+    /* Compare histograms */
     cv::Mat zone_hist;
     to_hist(zone_of_interest, &zone_hist);
 
-    //cv::namedWindow("Frame", 1);
-    //cv::imshow("Frame", frame);
-
-    //cv::namedWindow("Zone of interest", 1);
-    //cv::imshow("Zone of interest", zone_of_interest);
-
+    /* Same histograms comparison returns 1 */
     double comparison =
-      cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
+      1 - cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
+    comparison = comparison < 0 ? - comparison : comparison;
 
     //std::cout << "Histogram comparison: " << comparison << std::endl;
 
@@ -42,8 +39,8 @@ namespace beetrail
 
   void GrayScaleHistogram::to_hist(cv::Mat image, cv::Mat *histogram)
   {
-    std::vector<cv::Mat> bgr_planes;
-    cv::split(image, bgr_planes);
+    cv::Mat gray_image;
+    cv::cvtColor(image, gray_image, CV_BGR2GRAY);
     int histSize = 256;
     float range[] = { 0, 256};
     const float* histRange = { range };
@@ -77,30 +74,29 @@ namespace beetrail
         //
       }
     }
-    */
 
-    /*
     std::cout << "Avant : " << std::endl;
     std::cout << "b_hist = " << b_hist << std::endl;
     std::cout << "Pointer = " << *histogram << std::endl;
     std::cout << std::endl;
-    */
     cv::calcHist(&bgr_planes[0], 1, 0, cv::Mat(), b_hist, 1,
         &histSize, &histRange, uniform, accumulate);
 
     b_hist.copyTo(*histogram);
-    /*
     std::cout << "Après : " << std::endl;
     std::cout << "b_hist = " << b_hist << std::endl;
     std::cout << "Pointer = " << *histogram << std::endl;
     std::cout << std::endl;
     std::cout << std::endl;
-    */
 
     b_hist.release();
     //std::cout << "xd";
 
-    /* A la destruction de b_hist, ça explose ffs */
+    // A la destruction de b_hist, ça explose ffs */
+    cv::calcHist(&gray_image, 1, 0, cv::Mat(), b_hist, 1,
+        &histSize, &histRange, uniform, accumulate);
+
+    b_hist.copyTo(*histogram);
   }
 
   cv::Mat GrayScaleHistogram::get_subimage(
@@ -130,13 +126,13 @@ namespace beetrail
 
     if (end_x > width - 1)
     {
-      origin_x -= (width - 1 - end_x);
+      origin_x -= (end_x - width - 1);
       end_x = width - 1;
     }
 
     if (end_y > height - 1)
     {
-      origin_y -= (height - 1 - end_y);
+      origin_y -= (end_y - height - 1);
       end_y = height - 1;
     }
 

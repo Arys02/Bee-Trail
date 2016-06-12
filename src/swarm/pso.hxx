@@ -1,5 +1,3 @@
-//#include "pso.hh"
-
 namespace beetrail
 {
 
@@ -13,8 +11,8 @@ namespace beetrail
       pretty_printer_on_ = true;
       time_count_on_ = false;
       accel1_ = 2;
-      accel2_ = 2;
-      weight_ = 1.1;
+      accel2_ = 10;
+      weight_ = 0.5;
   }
 
 
