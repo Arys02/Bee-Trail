@@ -5,10 +5,8 @@ namespace beetrail
 {
   using Vector2 = cv::Point2d;
 
-  //GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width, cv::Mat* frame) //:
-
-    //square(square_width), image_hist()
-  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width)
+  //GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width)
+  GrayScaleHistogram::GrayScaleHistogram(cv::Mat image, int square_width, cv::Mat* frame)
   {
     square = square_width;
     to_hist(image, &image_hist);

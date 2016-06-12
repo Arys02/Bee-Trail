@@ -82,7 +82,7 @@ int main(int argc, char **argv)
   */
 
   beetrail::GrayScaleHistogram gs(cv::imread("tests/black-circle-transparent.png",
-        CV_LOAD_IMAGE_COLOR), 30);
+        CV_LOAD_IMAGE_COLOR), 30, &frame);
   beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
 
   /* Set attributes depending on parsed input */
@@ -140,7 +140,7 @@ int main(int argc, char **argv)
           CV_LOAD_IMAGE_COLOR);
       if (iteration_i == 1)
         pso.init(frame.cols, frame.rows);
-      pso.update(frame);
+      pso.update();
       video_manager.pretty_print(pso.list_particle_get(), frame);
       video_manager.display_frame(frame, stop);
 
