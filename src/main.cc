@@ -136,21 +136,20 @@ int main(int argc, char **argv)
         for (int a = 0; stop || a < 10; a++)
           pso.update();
 
-<<<<<<< HEAD
-      //cv::Mat frame = video_manager.frame_get();
+
       cv::Mat frame = cv::imread("tests/black_circle.jpg",
           CV_LOAD_IMAGE_COLOR);
           */
       if (iteration_i == 1)
         pso.init(frame.cols, frame.rows);
 
+
       cv::Mat frame = video_manager.frame_get();
 
       pso.update();
       video_manager.pretty_print(pso.list_particle_get(), frame);
       video_manager.display_frame(frame, stop);
-
-        iteration_i++;
+      iteration_i++;
     }
   }
 
