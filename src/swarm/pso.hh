@@ -7,6 +7,7 @@
 #include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 #include "ffunctions/distance-middle.hh"
+#include "tbb/tbb.h"
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh
@@ -58,6 +59,9 @@ namespace beetrail
 
       void evaluate();
 
+      void apply_update();
+
+      void init();
 
       std::vector<std::shared_ptr<Particle>> list_particle_get();
 
