@@ -39,11 +39,11 @@ int main(int argc, char **argv)
     ("topology,T", bpo::value<std::string>()->default_value("star"),
      "Changes the type of topology for the PSO algorithm")
 
-    ("video,v", bpo::value<std::string>()->default_value(""),
+    ("video,v", bpo::value<std::string>()->required(),
      "File path to video to analyse")
 
-    ("object,o", bpo::value<std::string>()->default_value(""),
-     "File path to object to be detected")
+    ("image,i", bpo::value<std::string>()->required(),
+     "File path to image willing to be detected")
 
     ("frames,f", bpo::value<int>()->default_value(1),
      "Number of frames to analyse per second")
@@ -65,25 +65,6 @@ int main(int argc, char **argv)
     exit_help(desc);
   }
 
-  /* Create PSO with input image */
-  //ImageDescriptor img(vm["object"].as<string>());
-  //
-  //
-  //beetrail::DistanceMiddle dst_mid;
-  //beetrail::Pso<beetrail::DistanceMiddle> pso(100, dst_mid);
-  //
-  cv::Mat frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
-
-  // marge
-  /*
-  beetrail::GrayScaleHistogram gs(cv::imread("tests/little_black_circle.jpg",
-        CV_LOAD_IMAGE_COLOR), 200, &frame);
-  beetrail::Pso<beetrail::GrayScaleHistogram> pso(100, gs);
-  */
-
-  beetrail::GrayScaleHistogram gs(cv::imread("tests/black-circle-transparent.png",
-        CV_LOAD_IMAGE_COLOR), 30, &frame);
-  beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
 
   /* Set attributes depending on parsed input */
   /* Topology type */
@@ -96,8 +77,16 @@ int main(int argc, char **argv)
    // exit_help();
   //pso.set_frames_per_second(frames_per_second);
 
+  /* Input image */
+  std::string path_to_image = vm["image"].as<std::string>();
+  cv::Mat image_to_detect = cv::imread(path_to_image, CV_LOAD_IMAGE_COLOR);
+
+
+
+
   /* Input video */
   std::string path_to_video = vm["video"].as<std::string>();
+
 
   beetrail::VideoManager video_manager = path_to_video == "" ?
     beetrail::VideoManager() :
@@ -117,38 +106,30 @@ int main(int argc, char **argv)
   int stop = 0;
   {
     double z = 0;
+    cv::Mat frame = video_manager.frame_get();
+
+    /* Init PSO and fitness function */
+    beetrail::GrayScaleHistogram gs(image_to_detect, 30, &frame);
+    beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
+    pso.init(frame.cols, frame.rows);
+
     Timer global_timer(z, benchmark_file, "Global time: ");
     while (!stop)
     {
+      /* Iteration timer */
+      double x = 0;
+      std::ostringstream oss;
+      oss << "Time for iteration " << iteration_i << ": ";
+      Timer local_timer(x, benchmark_file, oss.str());
 
-        double x = 0;
-
-        std::ostringstream oss;
-        oss << "Time for iteration " << iteration_i << ": ";
-        Timer local_timer(x, benchmark_file, oss.str());
-
-        frame = video_manager.frame_get();
-        //frame = cv::imread("tests/black_circle.jpg", CV_LOAD_IMAGE_COLOR);
-        /*
-        if (iteration_i == 1)
-          pso.init(frame.cols, frame.rows);
-
-        for (int a = 0; stop || a < 10; a++)
-          pso.update();
-
-
-      cv::Mat frame = cv::imread("tests/black_circle.jpg",
-          CV_LOAD_IMAGE_COLOR);
-          */
-      if (iteration_i == 1)
-        pso.init(frame.cols, frame.rows);
-
-
-      cv::Mat frame = video_manager.frame_get();
-
-      pso.update();
+      /* Pso update */
+      for (int i = 0 ; i < 10 ; i++)
+        pso.update();
       video_manager.pretty_print(pso.list_particle_get(), frame);
       video_manager.display_frame(frame, stop);
+
+      /* Next iteration preparation */
+      frame = video_manager.frame_get();
       iteration_i++;
     }
   }
