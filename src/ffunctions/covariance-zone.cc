@@ -17,7 +17,7 @@ namespace beetrail
   {
     if (frame_ != nullptr)
     {
-      cv::Mat subimage = Utilities::get_subimage(*frame, pos, square_width,
+      cv::Mat subimage = Utilities::get_subimage(*frame_, pos, square_width,
           square_height);
 
       MatrixXd matrix = transform_mat(subimage);
@@ -26,7 +26,7 @@ namespace beetrail
 
       return covariance_distance(matrix, image_covariant_matrix);
     }
-    std::err << "Frame is null. Cannot compute covariance zone" << std::endl;
+    std::cerr << "Frame is null. Cannot compute covariance zone" << std::endl;
 
 
     /* Put subimage in matrixXd */

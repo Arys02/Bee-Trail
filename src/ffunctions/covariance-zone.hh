@@ -3,6 +3,7 @@
 #include <opencv/highgui.h>
 #include "utilities.hh"
 #include <iostream>
+#include <opencv2/core/eigen.hpp>
 
 namespace beetrail
 {
