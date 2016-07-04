@@ -6,6 +6,13 @@ namespace beetrail
   cv::Mat Utilities::get_subimage(
       cv::Mat base_image, Vector2 pos, int square_width, int square_height)
   {
+
+
+    if (square_width > base_image.size().width
+        || square_height > base_image.size().height)
+      return base_image;
+
+
     int width = base_image.size().width;
     int height = base_image.size().height;
 

@@ -8,14 +8,27 @@ namespace beetrail
   CovarianceZone::CovarianceZone(cv::Mat image, cv::Mat* frame) :
     square_width(image.size().width),
     square_height(image.size().height),
-    image_covariant_matrix(make_covariance_matrix(image)),
+    image_covariant_matrix(make_covariance_matrix(transform_mat(image))),
     frame_(frame)
   {
   }
 
   double CovarianceZone::operator()(Vector2 pos)
   {
-    /* Get subimage */
+    if (frame_ != nullptr)
+    {
+      cv::Mat subimage = Utilities::get_subimage(*frame, pos, square_width,
+          square_height);
+
+      MatrixXd matrix = transform_mat(subimage);
+
+      matrix = make_covariance_matrix(matrix);
+
+      return covariance_distance(matrix, image_covariant_matrix);
+    }
+    std::err << "Frame is null. Cannot compute covariance zone" << std::endl;
+
+
     /* Put subimage in matrixXd */
     /* Calculate covariance of this matrix */
     /* Return covariance distance between this matrix and image_covariant_matr*/
@@ -27,12 +40,7 @@ namespace beetrail
     return 0;
   }
 
-  cv::Mat CovarianceZone::get_subimage(cv::Mat image, Vector2 pos, int square)
-  {
-    return image;
-  }
-
-  MatrixXd CovarianceZone::make_covariance_matrix(cv::Mat m)
+  MatrixXd CovarianceZone::make_covariance_matrix(MatrixXd m)
   {
   }
 

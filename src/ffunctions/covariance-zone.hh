@@ -1,6 +1,8 @@
 #pragma once
 #include <Eigen/Core>
 #include <opencv/highgui.h>
+#include "utilities.hh"
+#include <iostream>
 
 namespace beetrail
 {
@@ -22,8 +24,7 @@ namespace beetrail
       cv::Mat* frame_;
 
       static double covariance_distance(MatrixXd a, MatrixXd b);
-      static cv::Mat get_subimage(cv::Mat image, Vector2 pos, int square);
-      static MatrixXd make_covariance_matrix(cv::Mat m);
       static MatrixXd transform_mat(cv::Mat m);
+      static MatrixXd make_covariance_matrix(MatrixXd m);
   };
 }
