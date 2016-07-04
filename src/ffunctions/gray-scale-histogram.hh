@@ -3,6 +3,7 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include "opencv2/opencv.hpp"
+#include "utilities.hh"
 
 namespace beetrail
 {
@@ -21,6 +22,6 @@ namespace beetrail
       cv::Mat* frame_;
 
       static void to_hist(cv::Mat image, cv::Mat *histogram);
-      static cv::Mat get_subimage(cv::Mat, Vector2 pos, int square);
+      //static cv::Mat get_subimage(cv::Mat, Vector2 pos, int square);
   };
 }

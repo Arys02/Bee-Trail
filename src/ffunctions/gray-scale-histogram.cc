@@ -19,7 +19,8 @@ namespace beetrail
     if (square > frame_->size().width || square > frame_->size().height)
       zone_of_interest = *frame_;
     else
-      zone_of_interest = get_subimage(*frame_, pos, this->square);
+      zone_of_interest = Utilities::get_subimage(*frame_, pos, this->square,
+          this->square);
 
     /* Compare histograms */
     cv::Mat zone_hist;
@@ -52,7 +53,7 @@ namespace beetrail
     *histogram = b_hist;
   }
 
-  cv::Mat GrayScaleHistogram::get_subimage(
+  /*cv::Mat GrayScaleHistogram::get_subimage(
       cv::Mat base_image, Vector2 pos, int square)
   {
     int width = base_image.size().width;
@@ -62,10 +63,10 @@ namespace beetrail
     int origin_y = pos.y - square / 2;
 
     int end_x = pos.x + square / 2;
-    int end_y = pos.y + square / 2;
+    int end_y = pos.y + square / 2; */
 
     /* Check bounds and move origin to make it fit */
-    if (origin_x < 0)
+    /*if (origin_x < 0)
     {
       end_x -= origin_x;
       origin_x = 0;
@@ -92,5 +93,5 @@ namespace beetrail
     cv::Rect region(origin_x, origin_y, end_x - origin_x, end_y - origin_y);
 
     return base_image(region);
-  }
+  } */
 }
