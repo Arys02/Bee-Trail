@@ -8,6 +8,7 @@
 #include "swarm/pso.hh"
 #include "video/video-manager.hh"
 #include "ffunctions/gray-scale-histogram.hh"
+#include "ffunctions/covariance-zone.hh"
 
 
 void exit_help(boost::program_options::options_description desc)
@@ -39,7 +40,7 @@ int main(int argc, char **argv)
     ("topology,T", bpo::value<std::string>()->default_value("star"),
      "Changes the type of topology for the PSO algorithm")
 
-    ("video,v", bpo::value<std::string>()->required(),
+    ("video,v", bpo::value<std::string>()->default_value(""),
      "File path to video to analyse")
 
     ("image,i", bpo::value<std::string>()->required(),
@@ -105,15 +106,19 @@ int main(int argc, char **argv)
   int iteration_i = 1;
   int stop = 0;
   {
-    double z = 0;
     cv::Mat frame = video_manager.frame_get();
 
     /* Init PSO and fitness function */
-    beetrail::GrayScaleHistogram gs(image_to_detect, 30, &frame);
-    beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
+    /*beetrail::GrayScaleHistogram gs(image_to_detect, 100, &frame);
+    beetrail::Pso<beetrail::GrayScaleHistogram> pso(50, gs); */
+    beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
+    beetrail::Pso<beetrail::CovarianceZone> pso(20, cz);
     pso.init(frame.cols, frame.rows);
 
-    Timer global_timer(z, benchmark_file, "Global time: ");
+    double z = 0;
+    std::ostringstream oss117;
+    oss117 << "Global time: ";
+    Timer global_timer(z, benchmark_file, oss117.str());
     while (!stop)
     {
       /* Iteration timer */
@@ -123,13 +128,23 @@ int main(int argc, char **argv)
       Timer local_timer(x, benchmark_file, oss.str());
 
       /* Pso update */
-      for (int i = 0 ; i < 10 ; i++)
+      for (int i = 0 ; i < 5 ; i++)
+      {
+        double g = 0;
+        std::ostringstream oss;
+        oss << "  Time for a PSO update " << i << ": ";
+        Timer local_timer(g, benchmark_file, oss.str());
         pso.update();
+      }
       video_manager.pretty_print(pso.list_particle_get(), frame);
+      //std::string stp = std::to_string(iteration_i);
+      //cv::imwrite("ok/image" +  stp + ".png", frame);
       video_manager.display_frame(frame, stop);
 
       /* Next iteration preparation */
       frame = video_manager.frame_get();
+      if (!frame.data)
+        break;
       iteration_i++;
     }
   }
