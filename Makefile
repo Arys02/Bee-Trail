@@ -1,5 +1,5 @@
-CXX = gcc-4.9
-CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video -O0
+#CXX = gcc-4.9
+CXXFLAGS = -std=c++1y -Wall -Wextra -pedantic -g -Isrc/ -Isrc/video -O3
 CXXLIBS = $(FLAGCV) $(LINKCV) -ltbb
 DEBUG = -g
 BIN = bee-trail
@@ -14,7 +14,7 @@ DIR_VID = $(DIR_SRC)/video
 SRC_SWA = $(addprefix $(DIR_SWA)/, particle.cc)
 DIR_SWA = $(DIR_SRC)/swarm
 SRC_FFU = $(addprefix $(DIR_FFU)/, image-descriptor.cc distance-middle.cc \
-		gray-scale-histogram.cc covariance-zone.cc)
+		gray-scale-histogram.cc covariance-zone.cc utilities.cc)
 DIR_FFU = $(DIR_SRC)/ffunctions
 DIR_SRC = src
 
