@@ -28,6 +28,7 @@ int main(int argc, char **argv)
 {
   /* Parse aguments */
   namespace bpo = boost::program_options;
+  using namespace cv;
   bpo::options_description desc(bpo::options_description("Options"));
   bpo::variables_map vm;
 
@@ -119,6 +120,21 @@ int main(int argc, char **argv)
     std::ostringstream oss117;
     oss117 << "Global time: ";
     Timer global_timer(z, benchmark_file, oss117.str());
+
+    cv::VideoWriter output_vid;
+    int ex = static_cast<int>(video_manager.capture_get().get(CV_CAP_PROP_FOURCC));
+    
+    cv::Size S = Size(
+        (int) video_manager.capture_get().get(CV_CAP_PROP_FRAME_WIDTH),
+        (int) video_manager.capture_get().get(CV_CAP_PROP_FRAME_HEIGHT));
+
+    std::cout << "\n" << S;
+    output_vid.open("lol.mp4", -1,
+        video_manager.capture_get().get(CV_CAP_PROP_FPS), S, true);
+
+
+    if (!output_vid.isOpened())
+      std::cout << "\nfailed\n";
     while (!stop)
     {
       /* Iteration timer */
@@ -128,7 +144,7 @@ int main(int argc, char **argv)
       Timer local_timer(x, benchmark_file, oss.str());
 
       /* Pso update */
-      for (int i = 0 ; i < 5 ; i++)
+      for (int i = 0 ; i < 1 ; i++)
       {
         double g = 0;
         std::ostringstream oss;
@@ -137,12 +153,17 @@ int main(int argc, char **argv)
         pso.update();
       }
       video_manager.pretty_print(pso.list_particle_get(), frame);
-      //std::string stp = std::to_string(iteration_i);
-      //cv::imwrite("ok/image" +  stp + ".png", frame);
+
+      output_vid << frame;
+      std::string stp = std::to_string(iteration_i);
+      cv::imwrite("img/arys/" +  stp + ".png", frame);
+
       video_manager.display_frame(frame, stop);
 
       /* Next iteration preparation */
       frame = video_manager.frame_get();
+
+
       if (!frame.data)
         break;
       iteration_i++;

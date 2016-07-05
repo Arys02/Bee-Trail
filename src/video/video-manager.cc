@@ -82,7 +82,7 @@ namespace beetrail
         double x = p->pos_get().x;
         double y = p->pos_get().y;
 
-        draw_square(2, x, y, frame, 0, 255, 0);
+        draw_square(4, x, y, frame, 255, 255, 0);
       }
     }
 
