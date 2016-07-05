@@ -15,7 +15,7 @@ namespace beetrail
   {
     public:
 
-      CovarianceZone(cv::Mat image, cv::Mat* frame);
+      CovarianceZone(cv::Mat image, int square, cv::Mat* frame);
       double operator()(Vector2 pos);
 
     private:
@@ -25,6 +25,7 @@ namespace beetrail
       cv::Mat* frame_;
 
       static double covariance_distance(MatrixXd a, MatrixXd b);
+      static MatrixXd compute_matrix(const cv::Mat& m);
       static MatrixXd transform_mat(const cv::Mat& m);
       static MatrixXd make_covariance_matrix(MatrixXd m);
       static MatrixXd get_feature_mat(const cv::Mat& image);
