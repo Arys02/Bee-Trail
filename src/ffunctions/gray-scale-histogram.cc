@@ -35,7 +35,6 @@ namespace beetrail
   void GrayScaleHistogram::to_hist(cv::Mat image, cv::Mat *histogram)
   {
     cv::Mat gray_image = Utilities::grayify(image);
-    //cv::cvtColor(image, gray_image, CV_BGR2GRAY);
     int histSize = 256;
     float range[] = { 0, 256};
     const float* histRange = { range };

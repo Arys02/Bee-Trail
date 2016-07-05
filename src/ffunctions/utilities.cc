@@ -52,7 +52,7 @@ namespace beetrail
     return base_image(region);
   }
 
-  cv::Mat Utilities::grayify(cv::Mat src)
+  cv::Mat Utilities::grayify(const cv::Mat& src)
   {
     cv::Mat output;
     cv::cvtColor(src, output, CV_BGR2GRAY);

@@ -13,6 +13,6 @@ namespace beetrail
       static cv::Mat get_subimage(cv::Mat base_image, Vector2 pos, int width,
           int height);
 
-      static cv::Mat grayify(cv::Mat src);
+      static cv::Mat grayify(const cv::Mat& src);
   };
 }

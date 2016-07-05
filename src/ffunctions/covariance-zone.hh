@@ -25,7 +25,10 @@ namespace beetrail
       cv::Mat* frame_;
 
       static double covariance_distance(MatrixXd a, MatrixXd b);
-      static MatrixXd transform_mat(cv::Mat m);
+      static MatrixXd transform_mat(const cv::Mat& m);
       static MatrixXd make_covariance_matrix(MatrixXd m);
+      static MatrixXd get_feature_mat(const cv::Mat& image);
+      static cv::Mat get_x_gradient(const cv::Mat& m);
+      static cv::Mat get_y_gradient(const cv::Mat& m);
   };
 }
