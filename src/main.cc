@@ -109,8 +109,9 @@ int main(int argc, char **argv)
     cv::Mat frame = video_manager.frame_get();
 
     /* Init PSO and fitness function */
+    int nb_particles = vm["number"].as<int>();
     beetrail::GrayScaleHistogram gs(image_to_detect, 30, &frame);
-    beetrail::Pso<beetrail::GrayScaleHistogram> pso(40, gs);
+    beetrail::Pso<beetrail::GrayScaleHistogram> pso(nb_particles, gs);
     pso.init(frame.cols, frame.rows);
 
     Timer global_timer(z, benchmark_file, "Global time: ");

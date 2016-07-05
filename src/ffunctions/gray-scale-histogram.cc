@@ -9,7 +9,7 @@ namespace beetrail
   {
     square = square_width;
     to_hist(image, &image_hist);
-    std::cout << image_hist << std::endl;
+    //std::cout << image_hist << std::endl;
     frame_ = frame;
   }
 
