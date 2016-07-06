@@ -6,7 +6,6 @@ namespace beetrail
     : nb_particles_(nb_particles), fit_fun_(fit_fun)
 
   {
-      topology_ = star;
       frames_per_second_ = 1;
       pretty_printer_on_ = true;
       time_count_on_ = false;
@@ -21,22 +20,20 @@ namespace beetrail
   {
     srand(time(NULL));
 
+    // TODO parallelization
     for (int i = 0 ; i < nb_particles_ ; i++)
     {
       int randomX = random() % frame_width;
       int randomY = random() % frame_height;
 
-      // TODO Set random acceleration?
       Particle p(Vector2(randomX, randomY), Vector2(2, 2) , this);
 
       list_particle_.push_back(std::make_shared<Particle>(p));
     }
 
-    //TODO Will be changed when calling evaluation function on this random swarm
     /* Tmp solution to best_particle find */
     int r = random() % nb_particles_;
     best_pos_ = list_particle_[r]->best_pt_get();
-    //evaluate();
   }
 
 
@@ -73,12 +70,19 @@ namespace beetrail
     /* Set best position for swarm and each particle */
     evaluate();
 
+    // TODO parallelization
+    /*
     auto body = [=] (size_t i)
     {
       list_particle_.at(i)->update(best_pos_);
     };
 
     tbb::parallel_for(size_t(0),(size_t) nb_particles_, body);
+
+    */
+
+    for (int i = 0; i < nb_particles_; i++)
+      list_particle_.at(i)->update(best_pos_);
 
     return;
   }
