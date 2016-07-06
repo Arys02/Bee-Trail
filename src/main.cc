@@ -112,8 +112,9 @@ int main(int argc, char **argv)
     /* Init PSO and fitness function */
     /*beetrail::GrayScaleHistogram gs(image_to_detect, 100, &frame);
     beetrail::Pso<beetrail::GrayScaleHistogram> pso(50, gs); */
+    int nb_particles = vm["number"].as<int>();
     beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
-    beetrail::Pso<beetrail::CovarianceZone> pso(20, cz);
+    beetrail::Pso<beetrail::CovarianceZone> pso(nb_particles, cz);
     pso.init(frame.cols, frame.rows);
 
     double z = 0;
