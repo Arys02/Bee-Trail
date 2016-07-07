@@ -2,30 +2,7 @@
 
 - What's next?
 
-.Implement Options function containing:
-  Pointer to VideoManager.
-  Pointer to ImageDescriptor.
-  Parameters for PSO (what kind of topology, number of frames to analyse etc).
-and link it to OptionManager in TODOs comments.
-Also, inside this class, define macros for MAX_FRAMES and TOPOLOGY for example.
-
-
-
-- Important:
-
-.Refactor code to implement well Middle fitness function and pretty printer
-.Doxygen
-.Comment well OptionParser and OptionManager
-
-
-- Future:
-
-.launch_pso (TheProgram) should return a PsoResult class
-
-- Exceptions:
-.No cam available (VideoManager)
-
-
-- Less important:
-
-.Design pattern for option parser getters
+  .Optimize PSO/ff
+  .Add more topologies
+  .Generalize program to make this PSO independant and image tracking
+  independant
