@@ -34,7 +34,7 @@ class Timer
     /*!
      * \brief Destructor
      *
-     * End timer. Put time elapsed in s. Also print message with elpased time.
+     * End timer. Put time elapsed in s. Also print message with elapsed time.
      *
      */
     ~Timer();

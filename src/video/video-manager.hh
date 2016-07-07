@@ -25,6 +25,8 @@ namespace beetrail
   {
     public:
       using p_vector = std::vector<std::shared_ptr<Particle>>;
+
+
       /*!
        * \brief Constructor
        *
@@ -32,7 +34,6 @@ namespace beetrail
        * \param path : the path of the video file
        *
        */
-
       VideoManager(std::string path);
 
       /*!
@@ -43,6 +44,7 @@ namespace beetrail
        *
        */
       VideoManager();
+
       /*!
        * \brief frame_ getter
        *  will get a new frame from capture__
@@ -78,17 +80,34 @@ namespace beetrail
       void draw_square(int size, int x, int y, cv::Mat frame,
           int r, int g, int b);
 
+      /*!
+       * \brief Add a green square at position p on frame
+       * \param p : position
+       * \param frame : frame to modify
+       */
       void pretty_print(p_vector p, cv::Mat frame);
 
+      /*!
+       * \brief Display frame on a window named "Bee-Trail"
+       * \param frame : frame to display
+       * \param stop : reference to int set to true if user presses a key
+       */
       void display_frame(cv::Mat frame, int& stop);
 
+
+      /*!
+       * \brief video width getter
+       */
       double width_get();
 
+      /*!
+       * \brief video width getter
+       */
       double height_get();
 
     private:
-      cv::VideoCapture capture_; /*!< Videocapture type*/
-      std::string name_window_; /*!< Name of the generate window*/
+      cv::VideoCapture capture_;
+      std::string name_window_;
       double width_;
       double height_;
   };

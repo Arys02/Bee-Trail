@@ -88,13 +88,6 @@ namespace beetrail
     return feature_matrix;
   }
 
-  MatrixXd CovarianceZone::transform_mat(const cv::Mat& m)
-  {
-    MatrixXd matrix;
-    cv::cv2eigen(m, matrix);
-    return matrix;
-  }
-
   cv::Mat CovarianceZone::get_x_gradient(const cv::Mat& m)
   {
     cv::Mat out;

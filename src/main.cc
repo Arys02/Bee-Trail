@@ -112,28 +112,13 @@ int main(int argc, char **argv)
     /* Initialization of the swarm */
     pso.init(frame.cols, frame.rows);
 
-    /* Timer initialization */
-    double z = 0;
-    std::ostringstream oss117;
-    oss117 << "Global time: ";
-    Timer global_timer(z, benchmark_file, oss117.str());
-
-
-    while (!stop)
+    while (!stop || !frame.data)
     {
-      /* Iteration timer */
-      double x = 0;
-      std::ostringstream oss;
-      oss << "Time for iteration " << iteration_i << ": ";
-      Timer local_timer(x, benchmark_file, oss.str());
-
       /* Pso update */
+      /* Change i max to update more the PSO at each frame if the fitness
+       * function permits it */
       for (int i = 0 ; i < 1 ; i++)
       {
-        double g = 0;
-        std::ostringstream oss;
-        oss << "  Time for a PSO update " << i << ": ";
-        Timer local_timer(g, benchmark_file, oss.str());
         pso.update();
       }
       video_manager.pretty_print(pso.list_particle_get(), frame);
@@ -142,16 +127,12 @@ int main(int argc, char **argv)
       /* Uncomment to save each frame to a folder */
       //std::string stp = std::to_string(iteration_i);
       //cv::imwrite("img/arys/" +  stp + ".png", frame);
+      //iteration_i++;
 
       video_manager.display_frame(frame, stop);
 
       /* Next iteration preparation */
       frame = video_manager.frame_get();
-
-
-      if (!frame.data)
-        break;
-      iteration_i++;
     }
   }
 

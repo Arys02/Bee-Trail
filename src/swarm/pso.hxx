@@ -20,7 +20,6 @@ namespace beetrail
   {
     srand(time(NULL));
 
-    // TODO parallelization
     for (int i = 0 ; i < nb_particles_ ; i++)
     {
       int randomX = random() % frame_width;

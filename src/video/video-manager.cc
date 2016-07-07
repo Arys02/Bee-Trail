@@ -23,8 +23,6 @@ namespace beetrail
     moveWindow("Bee-Trail", 0, 0);
     width_ = capture_.get(CV_CAP_PROP_FRAME_WIDTH);
     height_ = capture_.get(CV_CAP_PROP_FRAME_HEIGHT);
-    std::cout << "width = " << width_;
-    std::cout << "height = " << height_;
   }
 
 

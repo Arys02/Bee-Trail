@@ -27,8 +27,6 @@ namespace beetrail
       1 - cv::compareHist(zone_hist, image_hist, CV_COMP_CORREL);
     comparison = comparison < 0 ? - comparison : comparison;
 
-    //std::cout << "Histogram comparison: " << comparison << std::endl;
-
     return comparison;
   }
 
