@@ -100,12 +100,11 @@ int main(int argc, char **argv)
     int nb_particles = vm["number"].as<int>();
 
     /* Init PSO and fitness function */
-    /* Uncomment for grayscale histogramme fitness function use */
-      //beetrail::GrayScaleHistogram gs(image_to_detect, 100, &frame);
-      //beetrail::Pso<beetrail::GrayScaleHistogram> pso(50, gs); */
-    /* Covariance Zone fitness function */
-    beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
-    beetrail::Pso<beetrail::CovarianceZone> pso(nb_particles, cz);
+      beetrail::GrayScaleHistogram gs(image_to_detect, 100, &frame);
+      beetrail::Pso<beetrail::GrayScaleHistogram> pso(50, gs);
+    /* Uncomment for Covariance Zone fitness function use */
+    //beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
+    //beetrail::Pso<beetrail::CovarianceZone> pso(nb_particles, cz);
 
 
     /* Initialization of the swarm */
