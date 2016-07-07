@@ -23,10 +23,8 @@ namespace beetrail
 
       double d = std::abs(covariance_distance(matrix, image_covariant_matrix));
 
-//      std::cout << "Distance = " << d << std::endl;
       return d;
     }
- //   std::cerr << "Frame is null. Cannot compute covariance zone" << std::endl;
 
     return 0;
   }
