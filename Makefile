@@ -18,7 +18,7 @@ SRC_FFU = $(addprefix $(DIR_FFU)/, distance-middle.cc \
 DIR_FFU = $(DIR_SRC)/ffunctions
 DIR_SRC = src
 
-.PHONY: all build debug check clean
+.PHONY: all build debug check clean doc
 
 all: ${BIN}
 
@@ -34,9 +34,13 @@ debug: CXXFLAGS += ${DEBUG}
 debug: CXX = clang++
 debug: clean ${BIN}
 
+doc:
+	doxygen Doxyfile
+
 check: clean  ${BIN}
 	./${BIN} tests/test
 
 clean:
 	${RM} ${BIN}
 	${RM} ${OBJ}
+	rm -rf doc/*
