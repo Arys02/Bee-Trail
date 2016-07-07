@@ -4,7 +4,6 @@
 #include <vector>
 #include "opencv2/opencv.hpp"
 #include "particle.hh"
-#include "../ffunctions/image-descriptor.hh"
 #include <math.h>
 #include "ffunctions/distance-middle.hh"
 #include "tbb/tbb.h"

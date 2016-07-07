@@ -90,7 +90,6 @@ int main(int argc, char **argv)
     std::ofstream benchmark_file(0);
 
 
-  /**/
 
   /* Main loop */
   int iteration_i = 1;
