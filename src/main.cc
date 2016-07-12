@@ -94,7 +94,15 @@ int main(int argc, char **argv)
   /* Main loop */
   int iteration_i = 1;
   int stop = 0;
+
   {
+    //* timer *
+    double z = 0;
+    std::ostringstream oss;
+    oss << "Global time : ";
+    Timer global_timer(z, benchmark_file, oss.str());
+
+
     cv::Mat frame = video_manager.frame_get();
 
     int nb_particles = vm["number"].as<int>();
@@ -112,6 +120,10 @@ int main(int argc, char **argv)
 
     while (!stop || !frame.data)
     {
+      double x = 0;
+      std::ostringstream oss_2;
+      oss_2 << "Time for iteration " << iteration_i << " : ";
+      Timer local_timer(x, benchmark_file, oss_2.str());
       /* Pso update */
       /* Change i max to update more the PSO at each frame if the fitness
        * function permits it */
@@ -131,6 +143,8 @@ int main(int argc, char **argv)
 
       /* Next iteration preparation */
       frame = video_manager.frame_get();
+      
+      iteration_i++;
     }
   }
 
