@@ -24,7 +24,8 @@ namespace beetrail
   class VideoManager
   {
     public:
-      using p_vector = std::vector<std::shared_ptr<Particle>>;
+      using Vector2 = cv::Point2d;
+      using p_vector = std::vector<Vector2>;
 
 
       /*!

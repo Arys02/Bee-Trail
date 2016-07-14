@@ -56,11 +56,15 @@ namespace beetrail
       void evaluate();
 
 
+      void cap_speed(int pos, double max);
+
+
+
 
       /*!
        * \brief Getter of then vector of particles
        */
-      std::vector<std::shared_ptr<Particle>> list_particle_get();
+      std::vector<Vector2> list_particle_get();
 
     public:
       /*!
@@ -68,6 +72,11 @@ namespace beetrail
        * \param width, height : size of the pso environment
        */
       void init(int width, int height);
+
+      std::vector<Vector2> pos_;
+      std::vector<Vector2> speed_;
+      std::vector<Vector2> best_local_;
+
 
       std::vector<std::shared_ptr<Particle>> list_particle_;
       Vector2 best_pos_;
