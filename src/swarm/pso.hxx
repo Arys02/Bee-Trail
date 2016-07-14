@@ -69,8 +69,6 @@ namespace beetrail
     /* Set best position for swarm and each particle */
     evaluate();
 
-    // TODO parallelization
-    /*
     auto body = [=] (size_t i)
     {
       list_particle_.at(i)->update(best_pos_);
@@ -78,10 +76,8 @@ namespace beetrail
 
     tbb::parallel_for(size_t(0),(size_t) nb_particles_, body);
 
-    */
-
-    for (int i = 0; i < nb_particles_; i++)
-      list_particle_.at(i)->update(best_pos_);
+    //for (int i = 0; i < nb_particles_; i++)
+      //list_particle_.at(i)->update(best_pos_);
 
     return;
   }
