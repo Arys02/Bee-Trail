@@ -7,6 +7,9 @@
 #include <math.h>
 #include "ffunctions/distance-middle.hh"
 #include "tbb/tbb.h"
+#include <thread>
+#include <chrono>
+#include <sstream>
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh
