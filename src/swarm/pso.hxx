@@ -40,9 +40,10 @@ namespace beetrail
   void Pso<FF>::evaluate()
   {
     /* Update best position for each particle and swarm */
-    // TODO parallelization
-    for (auto p : list_particle_)
+    auto body = [=] (size_t i)
     {
+      auto p = list_particle_.at(i);
+
       /* Evaluate local best particle */
       Vector2 local_best = p->best_pt_get();
       Vector2 current_pos = p->pos_get();
@@ -60,8 +61,12 @@ namespace beetrail
       {
         best_pos_ = local_best;
       }
-    }
+
+    };
+
+    tbb::parallel_for(size_t(0),(size_t) list_particle_.size(), body);
   }
+
 
   template <typename FF>
   void Pso<FF>::update()
