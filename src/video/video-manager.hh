@@ -3,6 +3,7 @@
 #include "opencv2/opencv.hpp"
 #include "swarm/particle.hh"
 #include <unistd.h>
+#include "tbb/tbb.h"
 
 /// \authors {Charles Yaiche, Nicolas Chariglione}
 /// \file video-manager.hh

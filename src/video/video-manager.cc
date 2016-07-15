@@ -74,15 +74,26 @@ namespace beetrail
     }
 
   void VideoManager::pretty_print(p_vector particles, cv::Mat frame)
-    {
-      for (auto p : particles)
+  {
+    /*auto body = [=] (size_t i)
       {
-        double x = p.x;
-        double y = p.y;
+      auto p = particles.at(i);
 
-        draw_square(4, x, y, frame, 255, 255, 0);
-      }
+      double x = p->pos_get().x;
+      double y = p->pos_get().y;
+
+      draw_square(4, x, y, frame, 255, 255, 0);
+      };
+
+      tbb::parallel_for(size_t(0), (size_t) particles.size(), body); */
+    for (auto p : particles)
+    {
+      double x = p->pos_get().x;
+      double y = p->pos_get().y;
+
+      draw_square(4, x, y, frame, 255, 255, 0);
     }
+  }
 
   void VideoManager::display_frame(cv::Mat frame, int& stop)
   {
