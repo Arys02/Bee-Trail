@@ -79,8 +79,8 @@ namespace beetrail
       {
       auto p = particles.at(i);
 
-      double x = p->pos_get().x;
-      double y = p->pos_get().y;
+      double x = p.x;
+      double y = p.y;
 
       draw_square(4, x, y, frame, 255, 255, 0);
       };
@@ -88,8 +88,8 @@ namespace beetrail
       tbb::parallel_for(size_t(0), (size_t) particles.size(), body); */
     for (auto p : particles)
     {
-      double x = p->pos_get().x;
-      double y = p->pos_get().y;
+      double x = p.x;
+      double y = p.y;
 
       draw_square(4, x, y, frame, 255, 255, 0);
     }

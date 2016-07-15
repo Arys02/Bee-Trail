@@ -108,11 +108,11 @@ int main(int argc, char **argv)
     int nb_particles = vm["number"].as<int>();
 
     /* Init PSO and fitness function */
-    beetrail::GrayScaleHistogram gs(image_to_detect, 400, &frame);
-    beetrail::Pso<beetrail::GrayScaleHistogram> pso(nb_particles, gs);
+    //beetrail::GrayScaleHistogram gs(image_to_detect, 400, &frame);
+    //beetrail::Pso<beetrail::GrayScaleHistogram> pso(nb_particles, gs);
     /* Uncomment for Covariance Zone fitness function use */
-    /*beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
-    beetrail::Pso<beetrail::CovarianceZone> pso(nb_particles, cz); */
+    beetrail::CovarianceZone cz(image_to_detect, 100, &frame);
+    beetrail::Pso<beetrail::CovarianceZone> pso(nb_particles, cz);
 
 
     /* Initialization of the swarm */
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
       //{
         pso.update();
       //}
-      //video_manager.pretty_print(pso.list_particle_get(), frame);
+      video_manager.pretty_print(pso.list_particle_get(), frame);
 
 
       /* Uncomment to save each frame to a folder */
