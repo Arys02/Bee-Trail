@@ -131,7 +131,7 @@ int main(int argc, char **argv)
       //{
         pso.update();
       //}
-      video_manager.pretty_print(pso.list_particle_get(), frame);
+      //video_manager.pretty_print(pso.list_particle_get(), frame);
 
 
       /* Uncomment to save each frame to a folder */
@@ -146,6 +146,11 @@ int main(int argc, char **argv)
 
       iteration_i++;
     }
+
+    benchmark_file << "Average time for an iteration : "
+      << (double) global_timer.get_time_elapsed() / (double) iteration_i
+      << std::endl;
+
   }
 
   return 0;

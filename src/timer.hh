@@ -39,6 +39,8 @@ class Timer
      */
     ~Timer();
 
+    double get_time_elapsed();
+
   private:
     double&                   seconds;
     std::ostream&             stream;
