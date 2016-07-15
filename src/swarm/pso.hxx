@@ -75,7 +75,7 @@ namespace beetrail
 
     };
 
-    tbb::parallel_for(size_t(0),(size_t) list_particle_.size(), body);
+    tbb::parallel_for(size_t(0),(size_t) nb_particles_, body);
   }
 
 
